@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-white text-gray-800 font-sans antialiased;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary-500 text-white px-6 py-2.5 rounded-lg font-medium text-sm
+           hover:bg-primary-600 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary-500/30 
+           transition-all duration-300 active:translate-y-0;
+  }
+
+  .btn-outline {
+    @apply border border-gray-200 text-gray-700 px-6 py-2.5 rounded-lg font-medium text-sm
+           hover:border-gray-300 hover:bg-gray-50 hover:-translate-y-0.5 hover:shadow-md
+           transition-all duration-300 active:translate-y-0;
+  }
+
+  .card {
+    @apply bg-white border border-gray-200 rounded-xl hover:shadow-xl hover:-translate-y-1 transition-all duration-300;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm text-gray-800
+           placeholder-gray-400 focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500
+           transition-colors duration-200;
+  }
+
+  .badge-available {
+    @apply bg-green-50 text-green-600 text-xs font-medium px-2.5 py-1 rounded-full;
+  }
+
+  .badge-unavailable {
+    @apply bg-red-50 text-red-600 text-xs font-medium px-2.5 py-1 rounded-full;
+  }
+
+  .badge-confirmed {
+    @apply bg-green-50 text-green-600 text-xs font-medium px-3 py-1 rounded-full;
+  }
+
+  .badge-pending {
+    @apply bg-amber-50 text-amber-600 text-xs font-medium px-3 py-1 rounded-full;
+  }
+
+  .badge-completed {
+    @apply bg-blue-50 text-blue-600 text-xs font-medium px-3 py-1 rounded-full;
+  }
+
+  .badge-cancelled {
+    @apply bg-red-50 text-red-600 text-xs font-medium px-3 py-1 rounded-full;
+  }
+
+  /* Fade-in up animation for sections */
+  .animate-fade-in-up {
+    animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Smooth scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a1a1a1;
+}

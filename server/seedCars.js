@@ -1,0 +1,161 @@
+require("dotenv").config();
+const dns = require("dns");
+dns.setServers(["8.8.8.8", "8.8.4.4"]);
+const mongoose = require("mongoose");
+
+const cars = [
+  {
+    name: "BMW X5",
+    brand: "BMW",
+    type: "SUV",
+    year: 2023,
+    pricePerDay: 300,
+    seats: 5,
+    fuelType: "Hybrid",
+    transmission: "Automatic",
+    location: "New York",
+    description: "The BMW X5 is a mid-size luxury SUV with powerful performance, spacious interior, and cutting-edge technology.",
+    images: ["https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&q=80"],
+    available: true,
+  },
+  {
+    name: "Toyota Corolla",
+    brand: "Toyota",
+    type: "Sedan",
+    year: 2022,
+    pricePerDay: 130,
+    seats: 5,
+    fuelType: "Petrol",
+    transmission: "Manual",
+    location: "Chicago",
+    description: "The Toyota Corolla is a reliable and fuel-efficient compact sedan, perfect for daily commuting.",
+    images: ["https://images.unsplash.com/photo-1621007806512-be7837026150?w=800&q=80"],
+    available: true,
+  },
+  {
+    name: "Jeep Wrangler",
+    brand: "Jeep",
+    type: "SUV",
+    year: 2023,
+    pricePerDay: 200,
+    seats: 4,
+    fuelType: "Petrol",
+    transmission: "Automatic",
+    location: "Los Angeles",
+    description: "The Jeep Wrangler is an iconic off-road SUV built for adventure with rugged capability and open-air freedom.",
+    images: ["https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=800&q=80"],
+    available: true,
+  },
+  {
+    name: "Mercedes C-Class",
+    brand: "Mercedes",
+    type: "Sedan",
+    year: 2024,
+    pricePerDay: 350,
+    seats: 5,
+    fuelType: "Petrol",
+    transmission: "Automatic",
+    location: "New York",
+    description: "The Mercedes C-Class delivers an exquisite blend of luxury comfort, refined performance, and advanced safety.",
+    images: ["https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800&q=80"],
+    available: true,
+  },
+  {
+    name: "Audi Q7",
+    brand: "Audi",
+    type: "SUV",
+    year: 2023,
+    pricePerDay: 280,
+    seats: 7,
+    fuelType: "Diesel",
+    transmission: "Automatic",
+    location: "Chicago",
+    description: "The Audi Q7 is a full-size luxury SUV with three rows of seating, quattro all-wheel drive, and premium interior.",
+    images: ["https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=800&q=80"],
+    available: true,
+  },
+  {
+    name: "Honda Civic",
+    brand: "Honda",
+    type: "Sedan",
+    year: 2022,
+    pricePerDay: 110,
+    seats: 5,
+    fuelType: "Petrol",
+    transmission: "Manual",
+    location: "Los Angeles",
+    description: "The Honda Civic is a sporty and efficient compact sedan known for its reliability and excellent driving dynamics.",
+    images: ["https://images.unsplash.com/photo-1590362891991-f776e747a588?w=800&q=80"],
+    available: true,
+  },
+  {
+    name: "Tesla Model 3",
+    brand: "Tesla",
+    type: "Sedan",
+    year: 2024,
+    pricePerDay: 400,
+    seats: 5,
+    fuelType: "Electric",
+    transmission: "Automatic",
+    location: "Houston",
+    description: "The Tesla Model 3 is a fully electric sedan with autopilot technology, zero emissions, and impressive range.",
+    images: ["https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=800&q=80"],
+    available: true,
+  },
+  {
+    name: "Range Rover Sport",
+    brand: "Range Rover",
+    type: "SUV",
+    year: 2023,
+    pricePerDay: 450,
+    seats: 5,
+    fuelType: "Hybrid",
+    transmission: "Automatic",
+    location: "New York",
+    description: "The Range Rover Sport combines luxury with powerful off-road capability, featuring a premium interior and dynamic handling.",
+    images: ["https://images.unsplash.com/photo-1519245659620-e859806a8d3b?w=800&q=80"],
+    available: true,
+  },
+  {
+    name: "Ford Mustang",
+    brand: "Ford",
+    type: "Coupe",
+    year: 2023,
+    pricePerDay: 320,
+    seats: 4,
+    fuelType: "Petrol",
+    transmission: "Automatic",
+    location: "Houston",
+    description: "The Ford Mustang is an iconic American muscle car delivering thrilling performance with its powerful V8 engine.",
+    images: ["https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=800&q=80"],
+    available: true,
+  },
+];
+
+async function seedCars() {
+  try {
+    await mongoose.connect(process.env.MONGO_URI, { family: 4 });
+    console.log("Connected to MongoDB");
+
+    // Clear existing cars
+    await mongoose.connection.db.collection("cars").deleteMany({});
+    console.log("Cleared existing cars");
+
+    // Insert new cars
+    const result = await mongoose.connection.db.collection("cars").insertMany(
+      cars.map((car) => ({
+        ...car,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      }))
+    );
+
+    console.log(`Seeded ${result.insertedCount} cars successfully!`);
+    process.exit(0);
+  } catch (error) {
+    console.error("Seed error:", error.message);
+    process.exit(1);
+  }
+}
+
+seedCars();
