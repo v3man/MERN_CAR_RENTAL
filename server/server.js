@@ -52,7 +52,7 @@ app.use("/api", apiLimiter);
 // CORS
 app.use(
   cors({
-    origin: process.env.CLIENT_URL || "http://localhost:5173",
+    origin: true,
     credentials: true,
   })
 );
@@ -89,7 +89,7 @@ app.use((err, req, res, next) => {
 // Serve Frontend
 app.use(express.static(path.join(__dirname, "../client/dist")));
 
-app.use((req, res) => {
+app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "../client/dist", "index.html"));
 });
 
