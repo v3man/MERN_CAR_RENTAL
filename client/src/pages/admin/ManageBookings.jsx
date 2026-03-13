@@ -13,10 +13,10 @@ const ManageBookings = () => {
   useEffect(() => {
     const fetchBookings = async () => {
       try {
-        const { data } = await api.get("/bookings/all");
+        const { data } = await api.get("/bookings");
         setBookings(data.bookings || data);
       } catch (err) {
-        console.error(err);
+        console.error("Fetch bookings error:", err);
       } finally {
         setLoading(false);
       }
@@ -78,8 +78,9 @@ const ManageBookings = () => {
             ) : (
               bookings.map((booking) => {
                 const car = booking.car;
-                const imageUrl = car?.images?.[0]
-                  ? (car.images[0].startsWith("http") ? car.images[0] : `${API_BASE}${car.images[0]}`)
+                const images = car?.images || [];
+                const imageUrl = images.length > 0
+                  ? (images[0].startsWith("http") ? images[0] : `${API_BASE}${images[0]}`)
                   : assets.car_image1;
 
                 return (

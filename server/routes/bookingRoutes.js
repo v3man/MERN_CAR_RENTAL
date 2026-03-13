@@ -41,6 +41,7 @@ router.patch("/:id/cancel", protect, cancelBooking);
 
 // Admin routes
 router.get("/", protect, authorize("admin"), getAllBookings);
+router.get("/all", protect, authorize("admin"), getAllBookings);
 router.get("/analytics", protect, authorize("admin"), getAnalytics);
 
 module.exports = router;
