@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { assets } from "../assets/assets";
 
-const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5000";
+const API_BASE = import.meta.env.VITE_API_URL || (import.meta.env.PROD ? "" : "http://localhost:5000");
 
 const CarCard = ({ car }) => {
   const imageUrl = car.images && car.images.length > 0
