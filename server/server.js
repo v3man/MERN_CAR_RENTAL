@@ -87,13 +87,12 @@ app.use((err, req, res, next) => {
 });
 
 // Serve Frontend Build
-if (process.env.NODE_ENV !== 'production') {
-  app.use(express.static(path.join(__dirname, "../client/dist")));
+app.use(express.static(path.join(__dirname, "../client/dist")));
 
-  app.use((req, res) => {
-    res.sendFile(path.join(__dirname, "../client/dist/index.html"));
-  });
-}
+app.use((req, res) => {
+  res.sendFile(path.join(__dirname, "../client/dist/index.html"));
+});
+
 
 
 // Start server
