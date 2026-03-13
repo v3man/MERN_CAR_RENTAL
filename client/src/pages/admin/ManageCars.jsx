@@ -73,9 +73,12 @@ const ManageCars = () => {
               </tr>
             ) : (
               cars.map((car) => {
+                const fallbacks = [assets.car_image1, assets.car_image2, assets.car_image3, assets.car_image4];
+                const fallbackImage = fallbacks[parseInt(car._id?.slice(-1), 16) % fallbacks.length] || assets.car_image1;
+
                 const imageUrl = car.images?.[0]
                   ? (car.images[0].startsWith("http") ? car.images[0] : `${API_BASE}${car.images[0]}`)
-                  : assets.car_image1;
+                  : fallbackImage;
 
                 return (
                   <tr key={car._id} className="border-b border-gray-50 hover:bg-gray-50/50 transition-colors">
@@ -85,7 +88,7 @@ const ManageCars = () => {
                           src={imageUrl}
                           alt=""
                           onError={(e) => {
-                            e.target.src = assets.car_image1;
+                            e.target.src = fallbackImage;
                             e.target.onerror = null;
                           }}
                           className="w-12 h-8 rounded object-cover bg-gray-100"

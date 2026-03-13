@@ -4,9 +4,12 @@ import { assets } from "../assets/assets";
 const API_BASE = import.meta.env.VITE_API_URL || (import.meta.env.PROD ? "" : "http://localhost:5000");
 
 const CarCard = ({ car }) => {
+  const fallbacks = [assets.car_image1, assets.car_image2, assets.car_image3, assets.car_image4];
+  const fallbackImage = fallbacks[parseInt(car._id?.slice(-1), 16) % fallbacks.length] || assets.car_image1;
+
   const imageUrl = car.images && car.images.length > 0
     ? (car.images[0].startsWith("http") ? car.images[0] : `${API_BASE}${car.images[0]}`)
-    : car.image || assets.car_image1;
+    : car.image || fallbackImage;
 
   const isAvailable = car.available !== false && car.isAvaliable !== false;
 
@@ -19,7 +22,7 @@ const CarCard = ({ car }) => {
             src={imageUrl}
             alt={car.name || car.model}
             onError={(e) => {
-              e.target.src = assets.car_image1;
+              e.target.src = fallbackImage;
               e.target.onerror = null;
             }}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"

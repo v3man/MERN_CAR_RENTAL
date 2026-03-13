@@ -15,7 +15,7 @@ const cars = [
     transmission: "Automatic",
     location: "New York",
     description: "The BMW X5 is a mid-size luxury SUV with powerful performance, spacious interior, and cutting-edge technology.",
-    images: ["https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&q=80"],
+    images: ["https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&q=80&w=800"],
     available: true,
   },
   {
@@ -29,7 +29,7 @@ const cars = [
     transmission: "Manual",
     location: "Chicago",
     description: "The Toyota Corolla is a reliable and fuel-efficient compact sedan, perfect for daily commuting.",
-    images: ["https://images.unsplash.com/photo-1621007806512-be7837026150?w=800&q=80"],
+    images: ["https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&q=80&w=800"],
     available: true,
   },
   {
@@ -43,7 +43,7 @@ const cars = [
     transmission: "Automatic",
     location: "Los Angeles",
     description: "The Jeep Wrangler is an iconic off-road SUV built for adventure with rugged capability and open-air freedom.",
-    images: ["https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=800&q=80"],
+    images: ["https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&q=80&w=800"],
     available: true,
   },
   {
@@ -57,7 +57,7 @@ const cars = [
     transmission: "Automatic",
     location: "New York",
     description: "The Mercedes C-Class delivers an exquisite blend of luxury comfort, refined performance, and advanced safety.",
-    images: ["https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800&q=80"],
+    images: ["https://images.unsplash.com/photo-1617531653332-bd46c24f2068?auto=format&fit=crop&q=80&w=800"],
     available: true,
   },
   {
@@ -71,7 +71,7 @@ const cars = [
     transmission: "Automatic",
     location: "Chicago",
     description: "The Audi Q7 is a full-size luxury SUV with three rows of seating, quattro all-wheel drive, and premium interior.",
-    images: ["https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=800&q=80"],
+    images: ["https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&q=80&w=800"],
     available: true,
   },
   {
@@ -85,7 +85,7 @@ const cars = [
     transmission: "Manual",
     location: "Los Angeles",
     description: "The Honda Civic is a sporty and efficient compact sedan known for its reliability and excellent driving dynamics.",
-    images: ["https://images.unsplash.com/photo-1590362891991-f776e747a588?w=800&q=80"],
+    images: ["https://images.unsplash.com/photo-1590362891991-f776e747a588?auto=format&fit=crop&q=80&w=800"],
     available: true,
   },
   {
@@ -99,7 +99,7 @@ const cars = [
     transmission: "Automatic",
     location: "Houston",
     description: "The Tesla Model 3 is a fully electric sedan with autopilot technology, zero emissions, and impressive range.",
-    images: ["https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=800&q=80"],
+    images: ["https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&q=80&w=800"],
     available: true,
   },
   {
@@ -113,7 +113,7 @@ const cars = [
     transmission: "Automatic",
     location: "New York",
     description: "The Range Rover Sport combines luxury with powerful off-road capability, featuring a premium interior and dynamic handling.",
-    images: ["https://images.unsplash.com/photo-1519245659620-e859806a8d3b?w=800&q=80"],
+    images: ["https://images.unsplash.com/photo-1519245659620-e859806a8d3b?auto=format&fit=crop&q=80&w=800"],
     available: true,
   },
   {
@@ -127,7 +127,7 @@ const cars = [
     transmission: "Automatic",
     location: "Houston",
     description: "The Ford Mustang is an iconic American muscle car delivering thrilling performance with its powerful V8 engine.",
-    images: ["https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=800&q=80"],
+    images: ["https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&q=80&w=800"],
     available: true,
   },
 ];

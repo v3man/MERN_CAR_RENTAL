@@ -45,9 +45,12 @@ const CarDetail = () => {
     );
   }
 
+  const fallbacks = [assets.car_image1, assets.car_image2, assets.car_image3, assets.car_image4];
+  const fallbackImage = fallbacks[parseInt(car._id?.slice(-1), 16) % fallbacks.length] || assets.car_image1;
+
   const imageUrl = car.images && car.images.length > 0
     ? (car.images[0].startsWith("http") ? car.images[0] : `${API_BASE}${car.images[0]}`)
-    : assets.car_image1;
+    : fallbackImage;
 
   const specs = [
     { icon: assets.users_icon, value: `${car.seats} Seats` },
@@ -73,7 +76,7 @@ const CarDetail = () => {
             src={imageUrl}
             alt={car.name}
             onError={(e) => {
-              e.target.src = assets.car_image1;
+              e.target.src = fallbackImage;
               e.target.onerror = null;
             }}
             className="w-full h-72 md:h-80 object-cover"
