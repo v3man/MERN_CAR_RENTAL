@@ -15,7 +15,7 @@ const carSchema = new mongoose.Schema(
     type: {
       type: String,
       required: true,
-      enum: ["sedan", "suv", "hatchback", "luxury", "sports", "van"],
+      enum: ["sedan", "suv", "hatchback", "luxury", "sports", "van", "coupe", "supercar"],
     },
     year: {
       type: Number,

@@ -31,7 +31,7 @@ app.use((req, res, next) => {
   if (req.body) req.body = mongoSanitize.sanitize(req.body);
   if (req.params) req.params = mongoSanitize.sanitize(req.params);
   if (req.headers) req.headers = mongoSanitize.sanitize(req.headers);
-  
+
   if (req.query) {
     // Modify in place, don't reassign req.query
     mongoSanitize.sanitize(req.query, { replaceWith: "_" });
@@ -87,12 +87,13 @@ app.use((err, req, res, next) => {
 });
 
 // Serve Frontend Build
-app.use(express.static(path.join(__dirname, "../client/dist")));
+if (process.env.NODE_ENV !== 'production') {
+  app.use(express.static(path.join(__dirname, "../client/dist")));
 
-app.use((req, res) => {
-  res.sendFile(path.join(__dirname, "../client/dist/index.html"));
-});
-
+  app.use((req, res) => {
+    res.sendFile(path.join(__dirname, "../client/dist/index.html"));
+  });
+}
 
 
 // Start server

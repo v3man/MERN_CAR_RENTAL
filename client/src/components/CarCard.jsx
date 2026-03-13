@@ -11,7 +11,7 @@ const CarCard = ({ car }) => {
     ? (car.images[0].startsWith("http") ? car.images[0] : `${API_BASE}${car.images[0]}`)
     : car.image || fallbackImage;
 
-  const isAvailable = car.available !== false && car.isAvaliable !== false;
+  const isAvailable = car.available !== false;
 
   return (
     <Link to={`/cars/${car._id}`} className="block group">
@@ -44,20 +44,20 @@ const CarCard = ({ car }) => {
         {/* Details */}
         <div className="p-4">
           <h3 className="font-semibold text-gray-900 mb-0.5">
-            {car.name || `${car.brand} ${car.model}`}
+            {car.name}
           </h3>
-          <p className="text-xs text-gray-500 mb-3">
-            {car.type || car.category} {car.year}
+          <p className="text-xs text-gray-500 mb-3 capitalize">
+            {car.type} • {car.brand} {car.year}
           </p>
 
           <div className="grid grid-cols-2 gap-y-1.5 text-xs text-gray-500">
             <div className="flex items-center gap-1.5">
               <img src={assets.users_icon} alt="" className="w-3.5 h-3.5 opacity-50" />
-              <span>{car.seats || car.seating_capacity} Seats</span>
+              <span>{car.seats} Seats</span>
             </div>
             <div className="flex items-center gap-1.5">
               <img src={assets.fuel_icon} alt="" className="w-3.5 h-3.5 opacity-50" />
-              <span className="capitalize">{car.fuelType || car.fuel_type}</span>
+              <span className="capitalize">{car.fuelType}</span>
             </div>
             <div className="flex items-center gap-1.5">
               <img src={assets.car_icon} alt="" className="w-3.5 h-3.5 opacity-50" />

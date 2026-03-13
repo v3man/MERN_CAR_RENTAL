@@ -95,7 +95,7 @@ const ManageCars = () => {
                         />
                         <div>
                           <div className="text-sm font-medium text-gray-900">{car.name}</div>
-                          <div className="text-xs text-gray-400">{car.seats} seats • {car.transmission}</div>
+                          <div className="text-xs text-gray-400 capitalize">{car.brand} • {car.seats} seats • {car.transmission}</div>
                         </div>
                       </div>
                     </td>
