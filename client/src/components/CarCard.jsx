@@ -18,6 +18,10 @@ const CarCard = ({ car }) => {
           <img
             src={imageUrl}
             alt={car.name || car.model}
+            onError={(e) => {
+              e.target.src = assets.car_image1;
+              e.target.onerror = null;
+            }}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           />
           {/* Availability badge */}

@@ -81,7 +81,15 @@ const ManageCars = () => {
                   <tr key={car._id} className="border-b border-gray-50 hover:bg-gray-50/50 transition-colors">
                     <td className="px-5 py-3">
                       <div className="flex items-center gap-3">
-                        <img src={imageUrl} alt="" className="w-12 h-8 rounded object-cover bg-gray-100" />
+                        <img
+                          src={imageUrl}
+                          alt=""
+                          onError={(e) => {
+                            e.target.src = assets.car_image1;
+                            e.target.onerror = null;
+                          }}
+                          className="w-12 h-8 rounded object-cover bg-gray-100"
+                        />
                         <div>
                           <div className="text-sm font-medium text-gray-900">{car.name}</div>
                           <div className="text-xs text-gray-400">{car.seats} seats • {car.transmission}</div>

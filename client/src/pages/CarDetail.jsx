@@ -69,7 +69,15 @@ const CarDetail = () => {
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 mb-8">
         {/* Image */}
         <div className="lg:col-span-3 rounded-xl overflow-hidden bg-gray-100">
-          <img src={imageUrl} alt={car.name} className="w-full h-72 md:h-80 object-cover" />
+          <img
+            src={imageUrl}
+            alt={car.name}
+            onError={(e) => {
+              e.target.src = assets.car_image1;
+              e.target.onerror = null;
+            }}
+            className="w-full h-72 md:h-80 object-cover"
+          />
         </div>
 
         {/* Booking card */}
