@@ -9,7 +9,7 @@ const rateLimit = require("express-rate-limit");
 const connectDB = require("./config/db");
 
 // Load env vars
-dotenv.config();
+dotenv.config({ path: path.join(__dirname, ".env") });
 
 // Import routes
 const authRoutes = require("./routes/authRoutes");
@@ -84,6 +84,13 @@ app.use((err, req, res, next) => {
   res.status(err.statusCode || 500).json({
     message: err.message || "Internal Server Error",
   });
+});
+
+// Serve Frontend
+app.use(express.static(path.join(__dirname, "../client/dist")));
+
+app.use((req, res) => {
+  res.sendFile(path.resolve(__dirname, "../client/dist", "index.html"));
 });
 
 // Start server

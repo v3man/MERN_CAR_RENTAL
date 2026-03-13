@@ -1,0 +1,74 @@
+﻿[dotenv@17.3.1] injecting env (0) from .env -- tip: ≡ƒ¢á∩╕Å  run anywhere with `dotenvx run -- yourcommand`
+node : 
+C:\Users\Admin\MAJOR P
+ROJECT\server\node_mod
+ules\imagekit\dist\ind
+ex.js:101
+At line:1 char:1
++ node 
+server/server.js 2>&1 
+| Out-File -FilePath 
+out.txt -Encoding utf 
+...
++ ~~~~~~~~~~~~~~~~~~~~
+~~~~~~
+    + CategoryInfo    
+          : 
+NotSpecified: (C    
+:\Users\Admin\...st\i 
+   
+ndex.js:101:String) [ 
+   ], RemoteException
+    + 
+FullyQualifiedError   
+ Id : 
+NativeCommandErr    or
+ 
+            throw new 
+Error(errorMessages_1.
+default.MANDATORY_PUBL
+IC_KEY_MISSING.message
+);
+            ^
+
+Error: Missing 
+publicKey during 
+ImageKit 
+initialization
+    at new ImageKit 
+(C:\Users\Admin\MAJOR 
+PROJECT\server\node_mo
+dules\imagekit\dist\in
+dex.js:101:19)
+    at 
+Object.<anonymous> 
+(C:\Users\Admin\MAJOR 
+PROJECT\server\config\
+imagekit.js:3:18)
+    at 
+Module._compile (node:
+internal/modules/cjs/l
+oader:1804:14)
+    at Object..js (nod
+e:internal/modules/cjs
+/loader:1936:10)
+    at Module.load (no
+de:internal/modules/cj
+s/loader:1525:32)
+    at Module._load (n
+ode:internal/modules/c
+js/loader:1327:12)
+    at TracingChannel.
+traceSync (node:diagno
+stics_channel:328:14)
+    at wrapModuleLoad 
+(node:internal/modules
+/cjs/loader:245:24)
+    at Module.require 
+(node:internal/modules
+/cjs/loader:1548:12)
+    at require (node:i
+nternal/modules/helper
+s:152:16)
+
+Node.js v24.13.1

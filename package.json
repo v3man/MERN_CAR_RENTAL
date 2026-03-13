@@ -1,0 +1,9 @@
+{
+  "name": "mern-car-rental",
+  "version": "1.0.0",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "build": "cd client && npm install && npm run build && cd ../server && npm install"
+  }
+}
