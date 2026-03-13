@@ -52,7 +52,7 @@ app.use("/api", apiLimiter);
 // CORS
 app.use(
   cors({
-    origin: true,
+    origin: process.env.CLIENT_URL || "http://localhost:5173",
     credentials: true,
   })
 );
@@ -86,12 +86,7 @@ app.use((err, req, res, next) => {
   });
 });
 
-// Serve Frontend
-app.use(express.static(path.join(__dirname, "../client/dist")));
 
-app.use((req, res) => {
-  res.sendFile(path.join(__dirname, "../client/dist/index.html"));
-});
 
 // Start server
 const PORT = process.env.PORT || 5000;
