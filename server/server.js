@@ -6,6 +6,7 @@ const dotenv = require("dotenv");
 const helmet = require("helmet");
 const mongoSanitize = require("express-mongo-sanitize");
 const rateLimit = require("express-rate-limit");
+const cookieParser = require("cookie-parser");
 const connectDB = require("./config/db");
 
 // Load env vars
@@ -22,6 +23,7 @@ const app = express();
 connectDB();
 
 // Security Middlewares
+app.use(cookieParser());
 // Set security HTTP headers
 app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" })); // Allow images to load cross-origin

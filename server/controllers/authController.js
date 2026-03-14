@@ -32,6 +32,23 @@ const signup = async (req, res) => {
 
     const user = await User.create({ name, email, password });
 
+    const accessToken = generateAccessToken(user);
+    const refreshToken = generateRefreshToken(user);
+
+    res.cookie("accessToken", accessToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
+      maxAge: 15 * 60 * 1000, // 15 minutes
+    });
+
+    res.cookie("refreshToken", refreshToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
+      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+    });
+
     res.status(201).json({
       message: "User registered successfully",
       user: {
@@ -43,7 +60,7 @@ const signup = async (req, res) => {
     });
   } catch (error) {
     console.error("Signup error:", error.message);
-    res.status(500).json({ message: error.message || "Signup failed" });
+    res.status(500).json({ message: "Something went wrong. Please try again." });
   }
 };
 
@@ -70,9 +87,21 @@ const login = async (req, res) => {
     user.refreshToken = refreshToken;
     await user.save({ validateBeforeSave: false });
 
+    res.cookie("accessToken", accessToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
+      maxAge: 15 * 60 * 1000, // 15 minutes
+    });
+
+    res.cookie("refreshToken", refreshToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
+      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+    });
+
     res.json({
-      accessToken,
-      refreshToken,
       user: {
         id: user._id,
         name: user.name,
@@ -82,7 +111,7 @@ const login = async (req, res) => {
     });
   } catch (error) {
     console.error("Login error:", error.message);
-    res.status(500).json({ message: error.message || "Login failed" });
+    res.status(500).json({ message: "Something went wrong. Please try again." });
   }
 };
 
@@ -104,9 +133,16 @@ const refresh = async (req, res) => {
 
     const newAccessToken = generateAccessToken(user);
 
-    res.json({ accessToken: newAccessToken });
+    res.cookie("accessToken", newAccessToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
+      maxAge: 15 * 60 * 1000, // 15 minutes
+    });
+
+    res.json({ message: "Token refreshed" });
   } catch (error) {
-    return res.status(401).json({ message: "Invalid or expired refresh token" });
+    return res.status(401).json({ message: "Something went wrong. Please try again." });
   }
 };
 
@@ -114,11 +150,12 @@ const refresh = async (req, res) => {
 // @route   POST /api/auth/logout
 const logout = async (req, res) => {
   try {
-    await User.findByIdAndUpdate(req.user._id, { refreshToken: null });
+    res.cookie("accessToken", "", { maxAge: 0 });
+    res.cookie("refreshToken", "", { maxAge: 0 });
     res.json({ message: "Logged out successfully" });
   } catch (error) {
     console.error("Logout error:", error.message);
-    res.status(500).json({ message: "Logout failed" });
+    res.status(500).json({ message: "Something went wrong. Please try again." });
   }
 };
 

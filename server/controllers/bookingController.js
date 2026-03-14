@@ -67,7 +67,7 @@ const createBooking = async (req, res) => {
     res.status(201).json(populatedBooking);
   } catch (error) {
     console.error("createBooking error:", error.message);
-    res.status(500).json({ message: error.message || "Failed to create booking" });
+    res.status(500).json({ message: "Something went wrong. Please try again." });
   }
 };
 
@@ -82,7 +82,7 @@ const getMyBookings = async (req, res) => {
     res.json(bookings);
   } catch (error) {
     console.error("getMyBookings error:", error.message);
-    res.status(500).json({ message: "Failed to fetch bookings" });
+    res.status(500).json({ message: "Something went wrong. Please try again." });
   }
 };
 
@@ -109,7 +109,7 @@ const getAllBookings = async (req, res) => {
     });
   } catch (error) {
     console.error("getAllBookings error:", error.message);
-    res.status(500).json({ message: "Failed to fetch bookings" });
+    res.status(500).json({ message: "Something went wrong. Please try again." });
   }
 };
 
@@ -141,7 +141,7 @@ const cancelBooking = async (req, res) => {
     res.json({ message: "Booking cancelled successfully", booking });
   } catch (error) {
     console.error("cancelBooking error:", error.message);
-    res.status(500).json({ message: "Failed to cancel booking" });
+    res.status(500).json({ message: "Something went wrong. Please try again." });
   }
 };
 
@@ -204,7 +204,7 @@ const getAnalytics = async (req, res) => {
     });
   } catch (error) {
     console.error("getAnalytics error:", error.message);
-    res.status(500).json({ message: "Failed to fetch analytics" });
+    res.status(500).json({ message: "Something went wrong. Please try again." });
   }
 };
 

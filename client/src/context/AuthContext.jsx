@@ -15,8 +15,7 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
-    const token = localStorage.getItem("accessToken");
-    if (storedUser && token) {
+    if (storedUser) {
       setUser(JSON.parse(storedUser));
     }
     setLoading(false);
@@ -24,8 +23,6 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     const { data } = await api.post("/auth/login", { email, password });
-    localStorage.setItem("accessToken", data.accessToken);
-    localStorage.setItem("refreshToken", data.refreshToken);
     localStorage.setItem("user", JSON.stringify(data.user));
     setUser(data.user);
     return data;
@@ -42,8 +39,6 @@ export const AuthProvider = ({ children }) => {
     } catch (err) {
       // ignore errors on logout
     }
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("refreshToken");
     localStorage.removeItem("user");
     setUser(null);
   };
