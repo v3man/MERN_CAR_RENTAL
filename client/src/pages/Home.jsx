@@ -1,8 +1,11 @@
 import { useState, useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { assets, cityList, dummyCarData } from "../assets/assets";
 import api from "../api/axios";
 import CarCard from "../components/CarCard";
+import { cn } from "../lib/utils";
+import { AnimatedGridPattern } from "../components/ui/AnimatedGridPattern";
 
 const Home = () => {
   const [featuredCars, setFeaturedCars] = useState([]);
@@ -78,62 +81,97 @@ const Home = () => {
   ];
 
   return (
-    <div>
-      {/* Hero */}
-      <section ref={heroRef} className="bg-gradient-to-b from-primary-50/60 to-white pt-16 pb-24 opacity-0">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 mt-8">
-            Luxury Cars on Rent
-          </h1>
+    <div className="relative w-full min-h-screen overflow-x-hidden">
+      {/* Global Animated Grid behind everything */}
+      <AnimatedGridPattern
+        numSquares={60}
+        maxOpacity={0.12}
+        duration={3}
+        repeatDelay={0.5}
+        className={cn(
+          "inset-x-0 inset-y-0 h-full w-full",
+          "[mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,white_60%,transparent_100%)]"
+        )}
+      />
 
-          {/* Search bar */}
-          <div className="inline-flex items-center bg-white rounded-full shadow-md border border-gray-100 pl-6 pr-2 py-2 gap-4 mb-12">
-            <div className="text-left">
-              <div className="text-xs text-gray-400 font-medium">Pickup Location</div>
-              <select
-                value={location}
-                onChange={(e) => setLocation(e.target.value)}
-                className="text-sm text-gray-700 bg-transparent focus:outline-none font-medium min-w-[120px]"
+      {/* Page Content Container */}
+      <div className="relative z-10">
+        {/* Hero */}
+        <section ref={heroRef} className="bg-gradient-to-b from-primary-50/60 to-white pt-16 pb-24 opacity-0">
+          <div className="max-w-7xl mx-auto px-4 text-center">
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 mt-8">
+              Luxury Cars on Rent
+            </h1>
+
+            {/* Search bar */}
+            <div className="inline-flex items-center bg-white rounded-full shadow-md border border-gray-100 pl-6 pr-2 py-2 gap-4 mb-12">
+              <div className="text-left">
+                <div className="text-xs text-gray-400 font-medium">Pickup Location</div>
+                <select
+                  value={location}
+                  onChange={(e) => setLocation(e.target.value)}
+                  className="text-sm text-gray-700 bg-transparent focus:outline-none font-medium min-w-[120px]"
+                >
+                  <option value="">Select City</option>
+                  {cityList.map((c) => <option key={c} value={c}>{c}</option>)}
+                </select>
+              </div>
+              <div className="w-px h-8 bg-gray-200"></div>
+              <div className="text-left">
+                <div className="text-xs text-gray-400 font-medium">Pick-up Date</div>
+                <input
+                  type="date"
+                  value={pickupDate}
+                  onChange={(e) => setPickupDate(e.target.value)}
+                  className="text-sm text-gray-700 bg-transparent focus:outline-none font-medium"
+                />
+              </div>
+              <div className="w-px h-8 bg-gray-200"></div>
+              <div className="text-left">
+                <div className="text-xs text-gray-400 font-medium">Return Date</div>
+                <input
+                  type="date"
+                  value={returnDate}
+                  onChange={(e) => setReturnDate(e.target.value)}
+                  className="text-sm text-gray-700 bg-transparent focus:outline-none font-medium"
+                />
+              </div>
+              <Link
+                to={`/cars?location=${location}&pickupDate=${pickupDate}&returnDate=${returnDate}`}
+                className="ml-2 bg-primary-500 hover:bg-primary-600 text-white rounded-full px-5 py-2.5 text-sm font-medium flex items-center gap-2 transition-colors"
               >
-                <option value="">Select City</option>
-                {cityList.map((c) => <option key={c} value={c}>{c}</option>)}
-              </select>
+                <img src={assets.search_icon} alt="" className="w-4 h-4 invert" />
+                Search
+              </Link>
             </div>
-            <div className="w-px h-8 bg-gray-200"></div>
-            <div className="text-left">
-              <div className="text-xs text-gray-400 font-medium">Pick-up Date</div>
-              <input
-                type="date"
-                value={pickupDate}
-                onChange={(e) => setPickupDate(e.target.value)}
-                className="text-sm text-gray-700 bg-transparent focus:outline-none font-medium"
-              />
-            </div>
-            <div className="w-px h-8 bg-gray-200"></div>
-            <div className="text-left">
-              <div className="text-xs text-gray-400 font-medium">Return Date</div>
-              <input
-                type="date"
-                value={returnDate}
-                onChange={(e) => setReturnDate(e.target.value)}
-                className="text-sm text-gray-700 bg-transparent focus:outline-none font-medium"
-              />
-            </div>
-            <Link
-              to={`/cars?location=${location}&pickupDate=${pickupDate}&returnDate=${returnDate}`}
-              className="ml-2 bg-primary-500 hover:bg-primary-600 text-white rounded-full px-5 py-2.5 text-sm font-medium flex items-center gap-2 transition-colors"
-            >
-              <img src={assets.search_icon} alt="" className="w-4 h-4 invert" />
-              Search
-            </Link>
-          </div>
 
-          {/* Hero car image */}
-          <div className="max-w-2xl mx-auto">
-            <img src={assets.main_car} alt="Car" className="w-full drop-shadow-xl" />
+            {/* Full-width Animated Hero car image */}
+            <div className="relative w-full" style={{ height: "320px", overflow: "visible" }}>
+              <motion.img
+                src={assets.main_car}
+                alt="Car"
+                className="drop-shadow-xl"
+                style={{
+                  width: "520px",
+                  position: "absolute",
+                  left: "calc(50% - 260px)", // true center: 50% minus half of 520px width
+                  top: 0,
+                }}
+                initial={{ x: "100vw" }}
+                animate={{
+                  x: ["100vw", "0px", "0px", "-150vw"],
+                }}
+                transition={{
+                  duration: 6,
+                  times: [0, 0.3, 0.65, 1],
+                  ease: ["easeOut", "linear", "easeIn", "easeIn"],
+                  repeat: Infinity,
+                  repeatDelay: 0.5,
+                }}
+              />
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
       {/* Featured Vehicles */}
       <section ref={featuredRef} className="py-20 px-4 opacity-0 transition-opacity duration-1000">
@@ -233,6 +271,7 @@ const Home = () => {
         </div>
       </section>
     </div>
+  </div>
   );
 };
 
