@@ -3,7 +3,6 @@ import api from "../api/axios";
 import toast from "react-hot-toast";
 import { format } from "date-fns";
 import { assets } from "../assets/assets";
-import { generateInvoice } from "../utils/generateInvoice";
 
 const API_BASE = import.meta.env.VITE_API_URL || (import.meta.env.PROD ? "" : "http://localhost:5000");
 
@@ -112,27 +111,14 @@ const MyBookings = () => {
                       Booked on {format(new Date(booking.createdAt), "M/d/yyyy")}
                     </div>
                   </div>
-                  
-                  <div className="mt-4 flex flex-col gap-2 shrink-0">
-                    {(booking.status === "confirmed" || booking.status === "completed") && (
-                      <button
-                        onClick={() => generateInvoice(booking, car)}
-                        className="btn-outline text-xs py-2 px-3 flex items-center justify-center gap-2 hover:bg-primary-50 hover:text-primary-600 border-gray-200"
-                      >
-                        <img src={assets.listIconColored} alt="" className="w-3 h-3 opacity-70" />
-                        Download Invoice
-                      </button>
-                    )}
-                    
-                    {booking.status === "confirmed" && (
-                      <button
-                        onClick={() => handleCancel(booking._id)}
-                        className="text-xs text-red-500 hover:text-red-600 font-medium transition-colors text-right"
-                      >
-                        Cancel Booking
-                      </button>
-                    )}
-                  </div>
+                  {booking.status === "confirmed" && (
+                    <button
+                      onClick={() => handleCancel(booking._id)}
+                      className="mt-3 text-sm text-red-500 hover:text-red-600 font-medium transition-colors"
+                    >
+                      Cancel Booking
+                    </button>
+                  )}
                 </div>
               </div>
             );
