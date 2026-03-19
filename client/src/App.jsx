@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import { AuthProvider } from "./context/AuthContext";
-import { ThemeProvider } from "./context/ThemeContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -24,12 +23,11 @@ import AdminSupport from "./pages/admin/Support";
 function App() {
   return (
     <BrowserRouter>
-      <ThemeProvider>
-        <AuthProvider>
-          <div className="flex flex-col min-h-screen bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100 transition-colors duration-300">
-            <Navbar />
+      <AuthProvider>
+        <div className="flex flex-col min-h-screen">
+          <Navbar />
 
-            <main className="flex-1">
+          <main className="flex-1">
               <Routes>
                 {/* Public routes */}
                 <Route path="/" element={<Home />} />
@@ -62,21 +60,20 @@ function App() {
             <Footer />
           </div>
 
-          <Toaster
-            position="top-right"
-            toastOptions={{
-              duration: 3000,
-              style: {
-                background: '#fff',
-                color: '#1f2937',
-                borderRadius: '10px',
-                border: '1px solid #e5e7eb',
-                fontSize: '14px',
-              },
-            }}
-          />
-        </AuthProvider>
-      </ThemeProvider>
+        <Toaster
+          position="top-right"
+          toastOptions={{
+            duration: 3000,
+            style: {
+              background: '#fff',
+              color: '#1f2937',
+              borderRadius: '10px',
+              border: '1px solid #e5e7eb',
+              fontSize: '14px',
+            },
+          }}
+        />
+      </AuthProvider>
     </BrowserRouter>
   );
 }

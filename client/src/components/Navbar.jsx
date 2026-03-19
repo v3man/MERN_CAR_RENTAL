@@ -1,11 +1,9 @@
 import { useState } from "react";
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { useTheme } from "../context/ThemeContext";
 import { assets, menuLinks } from "../assets/assets";
 
 const Navbar = () => {
-  const { isDarkMode, toggleTheme } = useTheme();
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
@@ -63,15 +61,6 @@ const Navbar = () => {
                 <img src={assets.search_icon} alt="" className="w-4 h-4 opacity-40" />
               </button>
             </form>
-
-            {/* Theme Toggle */}
-            <button
-              onClick={toggleTheme}
-              className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-              aria-label="Toggle Theme"
-            >
-              {isDarkMode ? "☀️" : "🌙"}
-            </button>
 
             {user ? (
               <div className="flex items-center gap-3">
