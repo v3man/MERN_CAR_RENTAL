@@ -145,16 +145,14 @@ const Home = () => {
               </Link>
             </div>
 
-            {/* Full-width Animated Hero car image */}
+            {/* Full-width Animated Hero car assembly */}
             <div className="relative w-full" style={{ height: "320px", overflow: "visible" }}>
-              <motion.img
-                src={assets.main_car}
-                alt="Car"
-                className="drop-shadow-xl"
+              <motion.div
                 style={{
-                  width: "520px",
                   position: "absolute",
-                  left: "calc(50% - 260px)", // true center: 50% minus half of 520px width
+                  width: "520px",
+                  height: "320px",
+                  left: "calc(50% - 260px)",
                   top: 0,
                 }}
                 initial={{ x: "100vw" }}
@@ -162,13 +160,19 @@ const Home = () => {
                   x: ["100vw", "0px", "0px", "-150vw"],
                 }}
                 transition={{
-                  duration: 6,
+                  duration: 5,
                   times: [0, 0.3, 0.65, 1],
                   ease: ["easeOut", "linear", "easeIn", "easeIn"],
                   repeat: Infinity,
-                  repeatDelay: 0.5,
+                  repeatDelay: 0.2,
                 }}
-              />
+              >
+                <img
+                  src={assets.main_car}
+                  alt="Car"
+                  className="w-full drop-shadow-xl"
+                />
+              </motion.div>
             </div>
           </div>
         </section>
