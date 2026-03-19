@@ -17,7 +17,8 @@ import Dashboard from "./pages/admin/Dashboard";
 import AddCar from "./pages/admin/AddCar";
 import ManageCars from "./pages/admin/ManageCars";
 import ManageBookings from "./pages/admin/ManageBookings";
-import Support from "./pages/admin/Support";
+import Support from "./pages/Support";
+import AdminSupport from "./pages/admin/Support";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
               <Route path="/signup" element={<Signup />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/support" element={<Support />} />
 
               {/* User routes */}
               <Route path="/my-bookings" element={
@@ -50,7 +52,7 @@ function App() {
                 <Route path="add-car" element={<AddCar />} />
                 <Route path="cars" element={<ManageCars />} />
                 <Route path="bookings" element={<ManageBookings />} />
-                <Route path="support" element={<Support />} />
+                <Route path="support" element={<AdminSupport />} />
               </Route>
             </Routes>
           </main>
