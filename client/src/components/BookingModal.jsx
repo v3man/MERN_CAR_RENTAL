@@ -73,6 +73,7 @@ const BookingModal = ({ car, isOpen, onClose, initialPickup = "", initialReturn 
           </div>
         </div>
 
+
         {days > 0 && (
           <div className="flex items-center justify-between py-3 border-t border-gray-100 mb-4">
             <span className="text-sm text-gray-500">{days} day{days > 1 ? "s" : ""} × ${car?.pricePerDay}</span>

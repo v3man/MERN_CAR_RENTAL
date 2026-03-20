@@ -51,12 +51,11 @@ const apiLimiter = rateLimit({
 });
 app.use("/api", apiLimiter);
 
-// CORS
 app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "https://merncarrental-production-e6e0.up.railway.app",
+      "https://mern-car-rental-backend-02tg.onrender.com",
       process.env.CLIENT_URL,
     ].filter(Boolean),
     credentials: true,
