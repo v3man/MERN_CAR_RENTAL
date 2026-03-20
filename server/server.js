@@ -51,16 +51,15 @@ const apiLimiter = rateLimit({
 });
 app.use("/api", apiLimiter);
 
-app.use(
-  cors({
-    origin: [
-      "http://localhost:5173",
-      "https://mern-car-rental-backend-02tg.onrender.com",
-      process.env.CLIENT_URL,
-    ].filter(Boolean),
-    credentials: true,
-  })
-);
+app.use(cors({
+  origin: [
+    "http://localhost:5173",
+    "https://mern-car-rental-cdhm.vercel.app",
+    "https://mern-car-rental-cdhm-git-main-vanshitshah754-gmailcoms-projects.vercel.app",
+    process.env.CLIENT_URL,
+  ].filter(Boolean),
+  credentials: true,
+}));
 
 // Body parsing — MUST come before routes
 app.use(express.json({ limit: "10mb" }));
