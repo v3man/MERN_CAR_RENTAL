@@ -121,6 +121,9 @@ const deleteCar = async (req, res) => {
 // @route   POST /api/cars/upload-image
 const uploadImage = async (req, res) => {
   try {
+    if (!imagekit) {
+      return res.status(503).json({ message: "Image upload service not configured" });
+    }
     if (!req.file) {
       return res.status(400).json({ message: "No image file provided" });
     }
