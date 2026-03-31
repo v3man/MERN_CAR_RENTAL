@@ -7,8 +7,9 @@ const CarCard = ({ car }) => {
   const fallbacks = [assets.car_image1, assets.car_image2, assets.car_image3, assets.car_image4];
   const fallbackImage = fallbacks[parseInt(car._id?.slice(-1), 16) % fallbacks.length] || assets.car_image1;
 
-  const imageUrl = car.images && car.images.length > 0
-    ? (car.images[0].startsWith("http") ? car.images[0] : `${API_BASE}${car.images[0]}`)
+  const imgPath = car.images && car.images.length > 0 ? car.images[0].replace(/\\/g, '/') : null;
+  const imageUrl = imgPath
+    ? (imgPath.startsWith("http") ? imgPath : `${API_BASE}${imgPath.startsWith('/') ? '' : '/'}${imgPath}`)
     : car.image || fallbackImage;
 
   const isAvailable = car.available !== false;

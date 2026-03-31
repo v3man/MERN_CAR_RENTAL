@@ -34,6 +34,7 @@ const MyBookings = () => {
       toast.success("Booking cancelled");
     } catch (error) {
       toast.error(error.response?.data?.message || "Failed to cancel");
+      console.error("Cancel API Error: ", error);
     }
   };
 
@@ -62,15 +63,24 @@ const MyBookings = () => {
         <div className="space-y-4">
           {bookings.map((booking, index) => {
             const car = booking.car;
-            const imageUrl = car?.images?.[0]
-              ? (car.images[0].startsWith("http") ? car.images[0] : `${API_BASE}${car.images[0]}`)
+            const imgPath = car?.images?.[0] ? car.images[0].replace(/\\/g, '/') : null;
+            const imageUrl = imgPath
+              ? (imgPath.startsWith("http") ? imgPath : `${API_BASE}${imgPath.startsWith('/') ? '' : '/'}${imgPath}`)
               : assets.car_image1;
 
             return (
               <div key={booking._id} className="card p-5 flex flex-col md:flex-row gap-5">
                 {/* Image */}
                 <div className="w-full md:w-48 h-32 rounded-lg overflow-hidden flex-shrink-0 bg-gray-100">
-                  <img src={imageUrl} alt={car?.name} className="w-full h-full object-cover" />
+                  <img 
+                    src={imageUrl} 
+                    alt={car?.name} 
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      e.target.src = assets.car_image1;
+                      e.target.onerror = null;
+                    }}
+                  />
                 </div>
 
                 {/* Middle — Info */}
