@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { assets } from "../assets/assets";
 import toast from "react-hot-toast";
+import api from "../api/axios";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -9,16 +10,25 @@ const Contact = () => {
     subject: "",
     message: "",
   });
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Dummy submit logic
-    toast.success("Thank you for contacting us! We'll get back to you soon.");
-    setFormData({ name: "", email: "", subject: "", message: "" });
+    setLoading(true);
+    try {
+      const { data } = await api.post("/messages", formData);
+      toast.success(data.message || "Thank you for contacting us!");
+      setFormData({ name: "", email: "", subject: "", message: "" });
+    } catch (error) {
+      console.error("Contact submit error:", error);
+      toast.error(error.response?.data?.message || "Failed to send message. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -43,7 +53,7 @@ const Contact = () => {
               </div>
               <div>
                 <h3 className="font-semibold text-gray-900 mb-1">Our Headquarters</h3>
-                <p className="text-gray-500 text-sm">123 Luxury Drive<br />Beverly Hills, CA 90210<br />United States</p>
+                <p className="text-gray-500 text-sm">B wing, Bandra Kurla Complex,<br />Bandra East, Mumbai 400051.</p>
               </div>
             </div>
 
@@ -64,7 +74,7 @@ const Contact = () => {
               </div>
               <div>
                 <h3 className="font-semibold text-gray-900 mb-1">Call Us</h3>
-                <p className="text-gray-500 text-sm">+1 (800) 123-4567<br />Mon-Fri from 8am to 8pm</p>
+                <p className="text-gray-500 text-sm">+91 70451 67890<br />Mon-Fri from 8am to 8pm</p>
               </div>
             </div>
 
@@ -139,8 +149,8 @@ const Contact = () => {
                   className="input-field resize-none rounded-xl"
                 ></textarea>
               </div>
-              <button type="submit" className="btn-primary w-full mt-2">
-                Send Message
+              <button type="submit" disabled={loading} className="btn-primary w-full mt-2 disabled:opacity-50">
+                {loading ? "Sending..." : "Send Message"}
               </button>
             </form>
           </div>

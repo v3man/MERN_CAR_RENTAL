@@ -97,7 +97,7 @@ const AddCar = () => {
               className="input-field" />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1.5">Daily Price ($)</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1.5">Daily Price (₹)</label>
             <input type="number" min="0" value={form.pricePerDay}
               onChange={(e) => setForm({ ...form, pricePerDay: Number(e.target.value) })}
               className="input-field" />

@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer className="bg-white border-t border-gray-100 mt-auto">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Brand */}
           <div>
             <img src={assets.logo} alt="CarRental" className="h-7 mb-4" />
@@ -39,25 +39,14 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Resources */}
-          <div>
-            <h4 className="font-semibold text-gray-900 mb-4 text-sm uppercase tracking-wide">Resources</h4>
-            <div className="space-y-2.5">
-              <Link to="/support" className="block text-gray-500 hover:text-gray-700 text-sm transition-colors">Help Center</Link>
-              <a href="#" className="block text-gray-500 hover:text-gray-700 text-sm transition-colors">Terms of Service</a>
-              <a href="#" className="block text-gray-500 hover:text-gray-700 text-sm transition-colors">Privacy Policy</a>
-              <a href="#" className="block text-gray-500 hover:text-gray-700 text-sm transition-colors">Insurance</a>
-            </div>
-          </div>
-
           {/* Contact */}
           <div>
             <h4 className="font-semibold text-gray-900 mb-4 text-sm uppercase tracking-wide">Contact</h4>
             <div className="space-y-2.5 text-sm text-gray-500">
-              <p>1234 Luxury Drive</p>
-              <p>San Francisco, CA 94107</p>
-              <p>+1 (555) 123-4567</p>
-              <p>car@example.com</p>
+              <p>B wing, Bandra Kurla Complex,</p>
+              <p>Bandra East, Mumbai 400051.</p>
+              <p>+91 70451 67890</p>
+              <p>supportcar@gmail.com</p>
             </div>
           </div>
         </div>

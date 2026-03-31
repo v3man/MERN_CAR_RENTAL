@@ -100,7 +100,7 @@ const ManageCars = () => {
                       </div>
                     </td>
                     <td className="px-5 py-3 text-sm text-gray-600 capitalize">{car.type}</td>
-                    <td className="px-5 py-3 text-sm text-gray-600">${car.pricePerDay}/day</td>
+                    <td className="px-5 py-3 text-sm text-gray-600">₹{car.pricePerDay}/day</td>
                     <td className="px-5 py-3">
                       <button onClick={() => handleToggle(car)}>
                         <span className={car.available !== false ? "badge-available" : "badge-unavailable"}>

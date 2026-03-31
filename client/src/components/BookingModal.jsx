@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import api from "../api/axios";
 import toast from "react-hot-toast";
 import { differenceInDays } from "date-fns";
 
 const BookingModal = ({ car, isOpen, onClose, initialPickup = "", initialReturn = "" }) => {
+  const navigate = useNavigate();
   const [pickupDate, setPickupDate] = useState(initialPickup);
   const [returnDate, setReturnDate] = useState(initialReturn);
   const [loading, setLoading] = useState(false);
@@ -29,6 +31,7 @@ const BookingModal = ({ car, isOpen, onClose, initialPickup = "", initialReturn 
       await api.post("/bookings", { carId: car._id, pickupDate, returnDate });
       toast.success("Booking confirmed!");
       onClose();
+      navigate("/my-bookings");
     } catch (error) {
       toast.error(error.response?.data?.message || "Booking failed");
     } finally {
@@ -47,7 +50,7 @@ const BookingModal = ({ car, isOpen, onClose, initialPickup = "", initialReturn 
 
         <div className="mb-4 p-3 bg-gray-50 rounded-lg">
           <div className="font-medium text-gray-900">{car?.name}</div>
-          <div className="text-sm text-gray-500">${car?.pricePerDay}/day</div>
+          <div className="text-sm text-gray-500">₹{car?.pricePerDay}/day</div>
         </div>
 
         <div className="space-y-4 mb-6">
@@ -76,8 +79,8 @@ const BookingModal = ({ car, isOpen, onClose, initialPickup = "", initialReturn 
 
         {days > 0 && (
           <div className="flex items-center justify-between py-3 border-t border-gray-100 mb-4">
-            <span className="text-sm text-gray-500">{days} day{days > 1 ? "s" : ""} × ${car?.pricePerDay}</span>
-            <span className="text-lg font-bold text-gray-900">${total}</span>
+            <span className="text-sm text-gray-500">{days} day{days > 1 ? "s" : ""} × ₹{car?.pricePerDay}</span>
+            <span className="text-lg font-bold text-gray-900">₹{total}</span>
           </div>
         )}
 

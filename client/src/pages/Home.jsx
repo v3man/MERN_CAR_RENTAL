@@ -61,20 +61,20 @@ const Home = () => {
 
   const testimonials = [
     {
-      name: "Emma Rodriguez",
-      location: "Barcelona, Spain",
+      name: "Rashmika Mandhana",
+      location: "Kerala, India",
       image: assets.testimonial_image_1,
       text: "I've used many booking platforms before, but none compare to the personalized experience and attention to detail that CarRental provides.",
     },
     {
-      name: "Emma Rodriguez",
-      location: "Barcelona, Spain",
+      name: "Disha Roy",
+      location: "Mumbai, India",
       image: assets.testimonial_image_2,
       text: "I've used many booking platforms before, but none compare to the personalized experience and attention to detail that CarRental provides.",
     },
     {
-      name: "Emma Rodriguez",
-      location: "Barcelona, Spain",
+      name: "Kareena Kapoor",
+      location: "Delhi, India",
       image: assets.testimonial_image_1,
       text: "I've used many booking platforms before, but none compare to the personalized experience and attention to detail that CarRental provides.",
     },
@@ -145,32 +145,18 @@ const Home = () => {
               </Link>
             </div>
 
-            {/* Full-width Animated Hero car assembly */}
-            <div className="relative w-full" style={{ height: "320px", overflow: "visible" }}>
+            {/* Centered Static Hero car */}
+            <div className="relative w-full flex justify-center mt-4">
               <motion.div
-                style={{
-                  position: "absolute",
-                  width: "520px",
-                  height: "320px",
-                  left: "calc(50% - 260px)",
-                  top: 0,
-                }}
-                initial={{ x: "100vw" }}
-                animate={{
-                  x: ["100vw", "0px", "0px", "-150vw"],
-                }}
-                transition={{
-                  duration: 5,
-                  times: [0, 0.3, 0.65, 1],
-                  ease: ["easeOut", "linear", "easeIn", "easeIn"],
-                  repeat: Infinity,
-                  repeatDelay: 0.2,
-                }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+                className="w-full max-w-[520px]"
               >
                 <img
                   src={assets.main_car}
                   alt="Car"
-                  className="w-full drop-shadow-xl"
+                  className="w-full drop-shadow-2xl"
                 />
               </motion.div>
             </div>

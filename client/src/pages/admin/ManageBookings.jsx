@@ -94,7 +94,7 @@ const ManageBookings = () => {
                     <td className="px-5 py-3 text-sm text-gray-600">
                       {format(new Date(booking.pickupDate), "M/dd/yyyy")} To {format(new Date(booking.returnDate), "M/dd/yyyy")}
                     </td>
-                    <td className="px-5 py-3 text-sm font-medium text-gray-900">${booking.totalPrice}</td>
+                    <td className="px-5 py-3 text-sm font-medium text-gray-900">₹{booking.totalPrice}</td>
                      <td className="px-5 py-3">
                       <span className={statusBadge(booking.status)}>{booking.status}</span>
                     </td>

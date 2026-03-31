@@ -82,7 +82,7 @@ const Dashboard = () => {
                     </div>
                   </div>
                   <div className="text-right flex items-center gap-4">
-                    <span className="text-sm font-medium text-gray-700">${b.totalPrice}</span>
+                    <span className="text-sm font-medium text-gray-700">₹{b.totalPrice}</span>
                     <span className={`text-xs font-medium capitalize ${
                       b.status === "confirmed" ? "text-green-600" :
                       b.status === "completed" ? "text-blue-600" :
@@ -104,7 +104,7 @@ const Dashboard = () => {
           <h3 className="font-semibold text-gray-900 mb-1">Monthly Revenue</h3>
           <p className="text-xs text-gray-400 mb-4">Revenue for current month</p>
           <div className="text-3xl font-bold text-primary-500">
-            ${(analytics?.totalRevenue || 0).toLocaleString()}
+            ₹{(analytics?.totalRevenue || 0).toLocaleString()}
           </div>
         </div>
       </div>

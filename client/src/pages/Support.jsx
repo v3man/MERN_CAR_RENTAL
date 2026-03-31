@@ -59,7 +59,7 @@ const Support = () => {
                   </div>
                   <div>
                     <h3 className="font-medium text-gray-900 text-sm">Email Us</h3>
-                    <p className="text-gray-500 text-xs mt-1 text-wrap">support@carrental.com</p>
+                    <p className="text-gray-500 text-xs mt-1 text-wrap">supportcar@gmail.com</p>
                   </div>
                 </div>
 
@@ -69,7 +69,7 @@ const Support = () => {
                   </div>
                   <div>
                     <h3 className="font-medium text-gray-900 text-sm">Phone Support</h3>
-                    <p className="text-gray-500 text-xs mt-1">+1 (800) 123-4567</p>
+                    <p className="text-gray-500 text-xs mt-1">+91 70451 67890</p>
                   </div>
                 </div>
 
@@ -79,7 +79,7 @@ const Support = () => {
                   </div>
                   <div>
                     <h3 className="font-medium text-gray-900 text-sm">Main Office</h3>
-                    <p className="text-gray-500 text-xs mt-1">123 Luxury Drive, San Francisco, CA</p>
+                    <p className="text-gray-500 text-xs mt-1">B wing, Bandra Kurla Complex, Bandra East, Mumbai 400051.</p>
                   </div>
                 </div>
               </div>

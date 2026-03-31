@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First Class - Project Diagrams</title>
+    <style>
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            padding: 40px; 
+            background-color: #f3f4f6; 
+            color: #1f2937;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .diagram-container { 
+            background: white; 
+            margin: 0 auto 40px auto; 
+            padding: 30px; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05); 
+            max-width: 1000px; 
+            text-align: center;
+        }
+        h2 { 
+            border-bottom: 2px solid #e5e7eb; 
+            padding-bottom: 15px; 
+            margin-bottom: 30px;
+            color: #374151;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>First Class - Car Rental System Diagrams</h1>
+    <p style="text-align: center; margin-bottom: 30px;">
+        <em>Wait a few seconds for all diagrams to render. You can right-click any diagram and select "Save image as..." to download them.</em>
+    </p>
+
+    <div class="diagram-container">
+        <h2>5.1 UML – Use Case Diagram</h2>
+        <div class="mermaid">
+        flowchart LR
+            Customer(["🧑 Customer"])
+            Admin(["👨‍💼 Admin"])
+
+            subgraph Car Rental System
+                direction TB
+                UC1([Register & Login])
+                UC2([Search & Browse Cars])
+                UC3([View Car Details])
+                UC4([Book a Car])
+                UC5([Manage My Bookings])
+                UC6([Manage Cars Inventory])
+                UC7([Manage All Bookings])
+                UC8([View Analytics Dashboard])
+            end
+
+            Customer --> UC1
+            Customer --> UC2
+            Customer --> UC3
+            Customer --> UC4
+            Customer --> UC5
+
+            Admin --> UC1
+            Admin --> UC6
+            Admin --> UC7
+            Admin --> UC8
+        </div>
+    </div>
+
+    <div class="diagram-container">
+        <h2>5.2 UML Activity Diagram – Car Booking Flow</h2>
+        <div class="mermaid">
+        flowchart TD
+            Start((Start)) --> Login{"User Logged In?"}
+            Login -- No --> ShowLogin[Show Login/Signup Page]
+            ShowLogin --> Authenticate[User Authenticates]
+            Authenticate --> ViewHome
+            Login -- Yes --> ViewHome[View Home/Cars Page]
+
+            ViewHome --> SearchCars[Search & Filter Cars]
+            SearchCars --> SelectCar[Select Car]
+            SelectCar --> ViewDetails[View Car Details]
+            ViewDetails --> ClickBook[Click Book Now]
+            ClickBook --> SelectDates[Select Pickup & Return Dates]
+
+            SelectDates --> ValidateDates{"Are Dates Valid\n& Available?"}
+            ValidateDates -- No --> ShowError[Show Error Notification]
+            ShowError --> SelectDates
+
+            ValidateDates -- Yes --> CalculatePrice[Calculate Total Price]
+            CalculatePrice --> ConfirmBooking[Confirm Booking]
+            ConfirmBooking --> SaveDB[(Save to Database)]
+            SaveDB --> ShowSuccess[Show Success Message & Redirect]
+            ShowSuccess --> End((End))
+        </div>
+    </div>
+
+    <div class="diagram-container">
+        <h2>5.3 Context Diagram (Level 0 DFD)</h2>
+        <div class="mermaid">
+        flowchart LR
+            Customer(Customer)
+            System((First Class Online\nCar Rental System))
+            Admin(Admin)
+            DB[(MongoDB Atlas)]
+            ImageCDN[(ImageKit CDN)]
+
+            Customer -- "Search query, Booking details, Auth info" --> System
+            System -- "Car listings, Booking invoice, Status alerts" --> Customer
+
+            Admin -- "Car details (images, pricing), Status updates" --> System
+            System -- "Dashboard stats, Booking records, Inventory lists" --> Admin
+
+            System -- "Store/Retrieve Data" <--> DB
+            System -- "Upload/Fetch Images" <--> ImageCDN
+        </div>
+    </div>
+
+    <div class="diagram-container">
+        <h2>5.4 Level 1 Data Flow Diagram</h2>
+        <div class="mermaid">
+        flowchart TD
+            Customer(Customer)
+            Admin(Admin)
+
+            P1((1.0\nAuthentication\nManagement))
+            P2((2.0\nInventory\nManagement))
+            P3((3.0\nBooking\nManagement))
+            P4((4.0\nAnalytics\nReporting))
+
+            DB[(Database)]
+
+            Customer -- Credentials --> P1
+            P1 -- Auth Token --> Customer
+            Customer -- Search Criteria --> P2
+            P2 -- Car Listings --> Customer
+            Customer -- Booking Info --> P3
+            P3 -- Booking Confirmation/Status --> Customer
+
+            Admin -- Credentials --> P1
+            P1 -- Admin Token --> Admin
+            Admin -- Add/Edit Car Data --> P2
+            P2 -- Inventory Status --> Admin
+            Admin -- Manage Bookings --> P3
+            Admin -- Request Dashboard Data --> P4
+            P4 -- Stats & Revenue --> Admin
+
+            P1 <--> |Read/Write Users| DB
+            P2 <--> |Read/Write Cars| DB
+            P3 <--> |Read/Write Bookings| DB
+            P4 <--> |Read Aggregated Data| DB
+        </div>
+    </div>
+
+    <div class="diagram-container">
+        <h2>5.5 Level 2 DFD (Booking Process)</h2>
+        <div class="mermaid">
+        flowchart TD
+            Customer(Customer)
+            Admin(Admin)
+
+            P31((3.1\nValidate\nDates & Availability))
+            P32((3.2\nCalculate\nPrice))
+            P33((3.3\nRecord\nBooking))
+            P34((3.4\nUpdate\nStatus/Cancel))
+
+            DB_Bookings[(Bookings Data)]
+            DB_Cars[(Cars Inventory)]
+
+            Customer -- "Pickup & Return Dates" --> P31
+            P31 -- "Check overlapping bookings" --> DB_Bookings
+            P31 -- "Check car availability" --> DB_Cars
+
+            P31 -- "Valid Dates & Car Info" --> P32
+            P32 -- "Calculated Total Price" --> P33
+            Customer -- "Confirm Booking Request" --> P33
+
+            P33 -- "New Booking Record" --> DB_Bookings
+            P33 -- "Booking Success details" --> Customer
+
+            Customer -- "Cancellation Request" --> P34
+            Admin -- "Cancel/Complete Action" --> P34
+            P34 -- "Status Update" --> DB_Bookings
+            P34 -- "Cancellation Confirmed" --> Customer
+        </div>
+    </div>
+
+    <div class="diagram-container">
+        <h2>5.6 Entity-Relationship Diagram (ERD)</h2>
+        <div class="mermaid">
+        erDiagram
+            USER {
+                ObjectId _id PK
+                String name
+                String email UK
+                String password
+                String role "user/admin"
+                String refreshToken
+                Date createdAt
+                Date updatedAt
+            }
+
+            CAR {
+                ObjectId _id PK
+                String name
+                String brand
+                String type
+                Number year
+                Number seats
+                String transmission
+                String fuelType
+                Number pricePerDay
+                String location
+                Boolean available
+                Array images
+                String description
+            }
+
+            BOOKING {
+                ObjectId _id PK
+                ObjectId user FK
+                ObjectId car FK
+                Date pickupDate
+                Date returnDate
+                Number totalPrice
+                String status "confirmed/cancelled/completed"
+                Date createdAt
+                Date updatedAt
+            }
+
+            USER ||--o{ BOOKING : "makes"
+            CAR ||--o{ BOOKING : "is booked in"
+        </div>
+    </div>
+
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true, theme: 'default' });
+    </script>
+</body>
+</html>

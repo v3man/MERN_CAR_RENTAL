@@ -37,7 +37,7 @@ const CarCard = ({ car }) => {
           </div>
           {/* Price badge */}
           <div className="absolute bottom-3 right-3 bg-white/90 backdrop-blur-sm rounded-lg px-2.5 py-1 text-sm font-semibold text-gray-900">
-            ${car.pricePerDay}/day
+            ₹{car.pricePerDay}/day
           </div>
         </div>
 

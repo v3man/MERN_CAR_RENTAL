@@ -14,11 +14,18 @@ const router = express.Router();
 router.post(
   "/signup",
   [
-    body("name").trim().notEmpty().withMessage("Name is required"),
+    body("name")
+      .trim()
+      .isLength({ min: 3 })
+      .withMessage("Name must be at least 3 characters")
+      .matches(/^[a-zA-Z\s]+$/)
+      .withMessage("Name should only contain letters and spaces"),
     body("email").trim().isEmail().withMessage("Valid email is required"),
     body("password")
       .isLength({ min: 6 })
-      .withMessage("Password must be at least 6 characters"),
+      .withMessage("Password must be at least 6 characters")
+      .matches(/[A-Z]/)
+      .withMessage("Password must contain at least one uppercase letter"),
   ],
   validate,
   signup
@@ -36,7 +43,7 @@ router.post(
 
 router.post(
   "/refresh",
-  [body("refreshToken").notEmpty().withMessage("Refresh token is required")],
+  [body("refreshToken").optional()],
   validate,
   refresh
 );

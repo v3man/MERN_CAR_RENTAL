@@ -119,7 +119,7 @@ const login = async (req, res) => {
 // @route   POST /api/auth/refresh
 const refresh = async (req, res) => {
   try {
-    const { refreshToken } = req.body;
+    const refreshToken = req.body.refreshToken || req.cookies?.refreshToken;
     if (!refreshToken) {
       return res.status(400).json({ message: "Refresh token required" });
     }

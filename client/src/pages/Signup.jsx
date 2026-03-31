@@ -12,13 +12,38 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [showPw, setShowPw] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [emailError, setEmailError] = useState("");
+  const [nameError, setNameError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (password.length < 6) {
-      toast.error("Password must be at least 6 characters");
+    const nameRegex = /^[a-zA-Z\s]+$/;
+    const emailRegex = /^\S+@\S+\.\S+$/;
+
+    if (name.trim().length < 3) {
+      setNameError("Full name must be at least 3 characters");
       return;
     }
+    if (!nameRegex.test(name)) {
+      setNameError("Full name should only contain letters and spaces");
+      return;
+    }
+    setNameError("");
+    if (!emailRegex.test(email)) {
+      setEmailError("Please enter a valid email address");
+      return;
+    }
+    setEmailError("");
+    if (password.length < 6) {
+      setPasswordError("Password must be at least 6 characters");
+      return;
+    }
+    if (!/[A-Z]/.test(password)) {
+      setPasswordError("Password must contain at least one uppercase letter");
+      return;
+    }
+    setPasswordError("");
     setLoading(true);
     try {
       await signup(name, email, password);
@@ -44,29 +69,48 @@ const Signup = () => {
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1.5">Full Name</label>
             <input id="signup-name" type="text" required value={name}
-              onChange={(e) => setName(e.target.value)} placeholder="John Doe"
-              className="input-field" />
+              onChange={(e) => {
+                setName(e.target.value);
+                if (nameError) setNameError("");
+              }} placeholder="John Doe"
+              className={`input-field ${nameError ? "border-red-500 focus:ring-red-500" : ""}`} />
+            {nameError && (
+              <p className="text-xs text-red-500 mt-1.5 ml-1">{nameError}</p>
+            )}
           </div>
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1.5">Email</label>
             <input id="signup-email" type="email" required value={email}
-              onChange={(e) => setEmail(e.target.value)} placeholder="you@example.com"
-              className="input-field" />
+              onChange={(e) => {
+                setEmail(e.target.value);
+                if (emailError) setEmailError("");
+              }} placeholder="you@example.com"
+              className={`input-field ${emailError ? "border-red-500 focus:ring-red-500" : ""}`} />
+            {emailError && (
+              <p className="text-xs text-red-500 mt-1.5 ml-1">{emailError}</p>
+            )}
           </div>
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1.5">Password</label>
             <div className="relative">
               <input id="signup-password" type={showPw ? "text" : "password"} required
-                value={password} onChange={(e) => setPassword(e.target.value)}
-                placeholder="At least 6 characters" className="input-field pr-10" />
+                value={password} onChange={(e) => {
+                  setPassword(e.target.value);
+                  if (passwordError) setPasswordError("");
+                }}
+                placeholder="At least 6 characters"
+                className={`input-field pr-10 ${passwordError ? "border-red-500 focus:ring-red-500" : ""}`} />
               <button type="button" onClick={() => setShowPw(!showPw)}
                 className="absolute right-3 top-1/2 -translate-y-1/2">
                 <img src={showPw ? assets.eye_close_icon : assets.eye_icon} alt=""
                   className="w-4.5 h-4.5 opacity-40 hover:opacity-60 transition-opacity" />
               </button>
             </div>
+            {passwordError && (
+              <p className="text-xs text-red-500 mt-1.5 ml-1">{passwordError}</p>
+            )}
           </div>
 
           <button id="signup-submit" type="submit" disabled={loading}

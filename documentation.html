@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CarRental - Project Report | SDJ International College</title>
+<style>
+  @page {
+    size: A4;
+    margin: 20mm 18mm 25mm 18mm;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: Arial, sans-serif;
+    font-size: 11pt;
+    line-height: 1.6;
+    color: #222;
+    text-align: justify;
+    background: #fff;
+  }
+  /* Page Header */
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #8B0000;
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+  }
+  .page-header img { height: 50px; }
+  .page-header .site-name {
+    font-family: Arial, sans-serif;
+    font-size: 14pt;
+    font-weight: bold;
+    color: #8B0000;
+  }
+  /* Headings */
+  h1 {
+    font-family: Arial, sans-serif;
+    font-size: 16pt;
+    font-weight: bold;
+    color: #1a1a1a;
+    text-align: center;
+    margin: 30px 0 20px 0;
+    page-break-after: avoid;
+  }
+  h2 {
+    font-family: Arial, sans-serif;
+    font-size: 12pt;
+    font-weight: bold;
+    color: #1a1a1a;
+    margin: 20px 0 10px 0;
+    page-break-after: avoid;
+  }
+  h3 {
+    font-family: Arial, sans-serif;
+    font-size: 11pt;
+    font-weight: bold;
+    margin: 15px 0 8px 0;
+  }
+  p { margin-bottom: 10px; }
+  /* Page break */
+  .page-break {
+    page-break-before: always;
+    break-before: page;
+  }
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+    font-size: 11pt;
+  }
+  th, td {
+    border: 1px solid #333;
+    padding: 8px 10px;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background: #f0f0f0;
+    font-weight: bold;
+    font-size: 11pt;
+  }
+  /* Lists */
+  ul, ol { margin: 10px 0 10px 25px; }
+  li { margin-bottom: 5px; }
+  /* Title page */
+  .title-page {
+    text-align: center;
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .title-page .college-logo { height: 90px; margin-bottom: 20px; }
+  .title-page .college-name { font-size: 20pt; font-weight: bold; color: #003366; margin-bottom: 5px; }
+  .title-page .college-sub { font-size: 11pt; color: #555; margin-bottom: 40px; }
+  .title-page .project-title { font-size: 22pt; font-weight: bold; color: #8B0000; margin-bottom: 8px; }
+  .title-page .project-subtitle { font-size: 14pt; color: #333; margin-bottom: 50px; }
+  .title-page .student-info { font-size: 12pt; line-height: 2; }
+  .title-page .student-info strong { color: #333; }
+  .title-page .year { font-size: 12pt; margin-top: 40px; color: #555; }
+  /* Index table */
+  .index-table td:first-child { width: 60px; text-align: center; }
+  .index-table td:last-child { width: 70px; text-align: center; }
+  /* Code block */
+  .code-block {
+    background: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 12px;
+    font-family: 'Courier New', monospace;
+    font-size: 9.5pt;
+    overflow-x: auto;
+    margin: 10px 0;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+  /* Diagram containers */
+  .diagram-container {
+    text-align: center;
+    margin: 20px 0;
+    padding: 15px;
+    border: 1px solid #ddd;
+    background: #fafafa;
+  }
+  .diagram-container svg { max-width: 100%; height: auto; }
+  .diagram-caption {
+    font-size: 10pt;
+    font-style: italic;
+    color: #555;
+    margin-top: 8px;
+  }
+  /* Footer */
+  .page-footer {
+    text-align: center;
+    font-size: 10pt;
+    color: #555;
+    margin-top: 40px;
+    border-top: 1px solid #ccc;
+    padding-top: 8px;
+  }
+  /* Print styles */
+  @media print {
+    body { font-size: 11pt; }
+    .page-break { page-break-before: always; }
+    .no-print { display: none; }
+    .page-header { position: running(header); }
+    @page { @top-center { content: element(header); } }
+  }
+  /* Screen helper */
+  .screen-note {
+    background: #fffbe6;
+    border: 1px solid #f0d000;
+    padding: 12px 16px;
+    margin: 15px 0;
+    font-size: 10pt;
+    border-radius: 4px;
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== TITLE PAGE ==================== -->
+<div class="title-page">
+  <div style="font-size:18pt;font-weight:bold;color:#003366;">SDJ INTERNATIONAL COLLEGE</div>
+  <div class="college-sub">Affiliated to Veer Narmad South Gujarat University, Surat</div>
+  <div style="width:80%;height:2px;background:#8B0000;margin:10px auto 40px;"></div>
+  <div style="font-size:13pt;color:#555;margin-bottom:8px;">A Project Report On</div>
+  <div class="project-title">CarRental</div>
+  <div class="project-subtitle">Online Car Rental Management System</div>
+  <div style="font-size:12pt;color:#555;margin-bottom:5px;">Developed using MERN Stack</div>
+  <div style="width:60%;height:1px;background:#ccc;margin:20px auto;"></div>
+  <div class="student-info">
+    <strong>Submitted By:</strong> [Your Name]<br>
+    <strong>Enrollment No:</strong> [Your Enrollment Number]<br>
+    <strong>Department:</strong> [B.Sc. IT / BCA / MCA]<br>
+    <strong>Semester:</strong> [Semester Number]<br>
+    <strong>Guide:</strong> [Faculty Guide Name]
+  </div>
+  <div class="year">Academic Year: 2025–2026</div>
+</div>
+
+<!-- ==================== INDEX ==================== -->
+<div class="page-break"></div>
+<div class="page-header">
+  <span style="font-weight:bold;color:#003366;">SDJ International College</span>
+  <span class="site-name">CarRental</span>
+</div>
+
+<h1>INDEX</h1>
+<table class="index-table">
+  <tr><th>Sr. No</th><th>Description</th><th>Page No.</th></tr>
+  <tr><td>1</td><td><strong>Introduction</strong></td><td></td></tr>
+  <tr><td></td><td>&nbsp;&nbsp;&nbsp;1.1 Project Description</td><td></td></tr>
+  <tr><td></td><td>&nbsp;&nbsp;&nbsp;1.2 Project Profile</td><td></td></tr>
+  <tr><td>2</td><td><strong>Environment Description</strong></td><td></td></tr>
+  <tr><td></td><td>&nbsp;&nbsp;&nbsp;2.1 Hardware and Software Requirements</td><td></td></tr>
+  <tr><td></td><td>&nbsp;&nbsp;&nbsp;2.2 Technologies Used</td><td></td></tr>
+  <tr><td>3</td><td><strong>System Analysis and Planning</strong></td><td></td></tr>
+  <tr><td></td><td>&nbsp;&nbsp;&nbsp;3.1 Existing System and its Drawbacks</td><td></td></tr>
+  <tr><td></td><td>&nbsp;&nbsp;&nbsp;3.2 Feasibility Study</td><td></td></tr>
+  <tr><td></td><td>&nbsp;&nbsp;&nbsp;3.3 Requirement Gathering and Analysis</td><td></td></tr>
+  <tr><td>4</td><td><strong>Proposed System</strong></td><td></td></tr>
+  <tr><td></td><td>&nbsp;&nbsp;&nbsp;4.1 Scope</td><td></td></tr>
+  <tr><td></td><td>&nbsp;&nbsp;&nbsp;4.2 Project Modules Functionalities</td><td></td></tr>
+  <tr><td>5</td><td><strong>Detail Planning</strong></td><td></td></tr>
+  <tr><td></td><td>&nbsp;&nbsp;&nbsp;5.1 Data Flow Diagram / UML</td><td></td></tr>
+  <tr><td></td><td>&nbsp;&nbsp;&nbsp;5.2 Data Dictionary</td><td></td></tr>
+  <tr><td></td><td>&nbsp;&nbsp;&nbsp;5.3 Process Specification / Activity Flow Diagram</td><td></td></tr>
+  <tr><td></td><td>&nbsp;&nbsp;&nbsp;5.4 Entity-Relationship Diagram / Class Diagram</td><td></td></tr>
+  <tr><td>6</td><td><strong>System Design</strong></td><td></td></tr>
+  <tr><td></td><td>&nbsp;&nbsp;&nbsp;6.1 Database Design</td><td></td></tr>
+  <tr><td></td><td>&nbsp;&nbsp;&nbsp;6.2 Input Design</td><td></td></tr>
+  <tr><td></td><td>&nbsp;&nbsp;&nbsp;6.3 Output Design</td><td></td></tr>
+  <tr><td>7</td><td><strong>Software Testing</strong></td><td></td></tr>
+  <tr><td></td><td>&nbsp;&nbsp;&nbsp;7.1 Unit Testing</td><td></td></tr>
+  <tr><td></td><td>&nbsp;&nbsp;&nbsp;7.2 Integration Testing</td><td></td></tr>
+  <tr><td></td><td>&nbsp;&nbsp;&nbsp;7.3 System Testing</td><td></td></tr>
+  <tr><td>8</td><td><strong>Future Scope of Enhancements</strong></td><td></td></tr>
+  <tr><td>9</td><td><strong>Bibliography &amp; Reference</strong></td><td></td></tr>
+</table>
+
+<!-- ==================== CHAPTER 1: INTRODUCTION ==================== -->
+<div class="page-break"></div>
+<div class="page-header">
+  <span style="font-weight:bold;color:#003366;">SDJ International College</span>
+  <span class="site-name">CarRental</span>
+</div>
+
+<h1>1. Introduction</h1>
+
+<h2>1.1 Project Description</h2>
+<p>
+  <strong>CarRental</strong> is a full-stack web application designed to provide a seamless online car rental experience. Built using the <strong>MERN Stack</strong> (MongoDB, Express.js, React.js, Node.js), the platform allows users to browse available vehicles, view detailed specifications, select rental dates, and book cars online — all through an intuitive, modern user interface.
+</p>
+<p>
+  The system eliminates the need for traditional, manual car rental processes by digitizing the entire workflow — from vehicle discovery to booking confirmation. It features a robust authentication system with JWT-based access and refresh tokens stored as HTTP-only cookies, role-based access control separating regular users from administrators, and a comprehensive admin dashboard for fleet and booking management.
+</p>
+<p>
+  The application supports advanced features such as car search and filtering (by brand, type, fuel, transmission, price range, and location), image uploads via ImageKit CDN, booking overlap prevention, automated price calculation based on rental duration, and real-time analytics for administrators including monthly revenue tracking.
+</p>
+<p>
+  The frontend is developed with <strong>React 19</strong> and <strong>Vite</strong> for blazing-fast development and optimized production builds. It uses <strong>TailwindCSS</strong> for modern responsive styling, <strong>Framer Motion</strong> for smooth animations, and <strong>React Router v7</strong> for client-side navigation. The backend runs on <strong>Express 5</strong> with <strong>Mongoose 9</strong> ORM and implements enterprise-grade security measures including Helmet.js, rate limiting, NoSQL injection prevention, and input validation via express-validator.
+</p>
+<p>
+  The platform is deployed with the frontend hosted on <strong>Vercel</strong> and the backend on <strong>Railway</strong>, demonstrating a production-ready, cloud-native deployment architecture.
+</p>
+
+<h2>1.2 Project Profile</h2>
+<table>
+  <tr><th>Parameter</th><th>Details</th></tr>
+  <tr><td>Project Title</td><td>CarRental — Online Car Rental Management System</td></tr>
+  <tr><td>Project Type</td><td>Web Application (Full-Stack)</td></tr>
+  <tr><td>Technology Stack</td><td>MERN (MongoDB, Express.js, React.js, Node.js)</td></tr>
+  <tr><td>Frontend Framework</td><td>React 19 + Vite 7</td></tr>
+  <tr><td>Backend Framework</td><td>Express 5 + Node.js</td></tr>
+  <tr><td>Database</td><td>MongoDB Atlas (Cloud)</td></tr>
+  <tr><td>Styling</td><td>TailwindCSS 3.4</td></tr>
+  <tr><td>Authentication</td><td>JWT (Access + Refresh Tokens) with HTTP-only Cookies</td></tr>
+  <tr><td>Image Storage</td><td>ImageKit CDN</td></tr>
+  <tr><td>Deployment</td><td>Vercel (Frontend) + Railway (Backend)</td></tr>
+  <tr><td>Development Duration</td><td>3–4 months</td></tr>
+  <tr><td>Institute</td><td>SDJ International College, Surat</td></tr>
+</table>
+
+<!-- ==================== CHAPTER 2: ENVIRONMENT DESCRIPTION ==================== -->
+<div class="page-break"></div>
+<div class="page-header">
+  <span style="font-weight:bold;color:#003366;">SDJ International College</span>
+  <span class="site-name">CarRental</span>
+</div>
+
+<h1>2. Environment Description</h1>
+
+<h2>2.1 Hardware and Software Requirements</h2>
+
+<h3>Hardware Requirements</h3>
+<table>
+  <tr><th>Component</th><th>Minimum Requirement</th><th>Recommended</th></tr>
+  <tr><td>Processor</td><td>Intel Core i3 / AMD Ryzen 3</td><td>Intel Core i5 / AMD Ryzen 5 or higher</td></tr>
+  <tr><td>RAM</td><td>4 GB</td><td>8 GB or higher</td></tr>
+  <tr><td>Storage</td><td>256 GB HDD</td><td>256 GB SSD or higher</td></tr>
+  <tr><td>Display</td><td>1366 × 768 resolution</td><td>1920 × 1080 Full HD</td></tr>
+  <tr><td>Internet</td><td>Broadband connection</td><td>10 Mbps or higher</td></tr>
+</table>
+
+<h3>Software Requirements</h3>
+<table>
+  <tr><th>Software</th><th>Version</th><th>Purpose</th></tr>
+  <tr><td>Node.js</td><td>v18.x or higher</td><td>JavaScript runtime for server-side execution</td></tr>
+  <tr><td>npm</td><td>v9.x or higher</td><td>Package manager for dependencies</td></tr>
+  <tr><td>MongoDB Atlas</td><td>Cloud (v7.x)</td><td>NoSQL database service</td></tr>
+  <tr><td>VS Code</td><td>Latest</td><td>Code editor / IDE</td></tr>
+  <tr><td>Google Chrome</td><td>Latest</td><td>Primary browser for testing</td></tr>
+  <tr><td>Git</td><td>Latest</td><td>Version control system</td></tr>
+  <tr><td>Postman</td><td>Latest</td><td>API testing tool</td></tr>
+  <tr><td>Windows / macOS / Linux</td><td>Any modern OS</td><td>Operating system</td></tr>
+</table>
+
+<h2>2.2 Technologies Used</h2>
+
+<h3>Frontend Technologies</h3>
+<table>
+  <tr><th>Technology</th><th>Version</th><th>Description</th></tr>
+  <tr><td>React.js</td><td>19.2.0</td><td>Component-based UI library for building interactive interfaces</td></tr>
+  <tr><td>Vite</td><td>7.3.1</td><td>Next-generation frontend build tool with HMR</td></tr>
+  <tr><td>TailwindCSS</td><td>3.4.19</td><td>Utility-first CSS framework for rapid responsive styling</td></tr>
+  <tr><td>React Router DOM</td><td>7.13.1</td><td>Client-side routing and navigation</td></tr>
+  <tr><td>Framer Motion</td><td>12.36.0</td><td>Animation library for smooth page transitions and effects</td></tr>
+  <tr><td>Axios</td><td>1.13.6</td><td>HTTP client for API communication with interceptors</td></tr>
+  <tr><td>React Hot Toast</td><td>2.6.0</td><td>Toast notification system for user feedback</td></tr>
+  <tr><td>React Icons</td><td>5.6.0</td><td>Icon library with multiple icon packs</td></tr>
+  <tr><td>date-fns</td><td>4.1.0</td><td>Date utility library for formatting and calculations</td></tr>
+</table>
+
+<h3>Backend Technologies</h3>
+<table>
+  <tr><th>Technology</th><th>Version</th><th>Description</th></tr>
+  <tr><td>Node.js</td><td>18.x+</td><td>Server-side JavaScript runtime environment</td></tr>
+  <tr><td>Express.js</td><td>5.2.1</td><td>Minimal and flexible web application framework</td></tr>
+  <tr><td>Mongoose</td><td>9.2.4</td><td>MongoDB ODM for schema-based data modeling</td></tr>
+  <tr><td>JSON Web Token</td><td>9.0.3</td><td>Token-based authentication (access + refresh)</td></tr>
+  <tr><td>bcryptjs</td><td>3.0.3</td><td>Password hashing with salt rounds</td></tr>
+  <tr><td>Helmet.js</td><td>8.1.0</td><td>Security middleware for HTTP headers</td></tr>
+  <tr><td>express-rate-limit</td><td>8.3.1</td><td>API rate limiting (100 req/15min per IP)</td></tr>
+  <tr><td>express-mongo-sanitize</td><td>2.2.0</td><td>NoSQL injection prevention</td></tr>
+  <tr><td>express-validator</td><td>7.3.1</td><td>Input validation and sanitization</td></tr>
+  <tr><td>Multer</td><td>2.1.1</td><td>Multipart form-data / file upload handling</td></tr>
+  <tr><td>ImageKit</td><td>6.0.0</td><td>Cloud-based image storage and CDN delivery</td></tr>
+  <tr><td>cookie-parser</td><td>1.4.7</td><td>Parse HTTP cookies for auth tokens</td></tr>
+  <tr><td>compression</td><td>1.8.1</td><td>Gzip response compression for performance</td></tr>
+  <tr><td>CORS</td><td>2.8.6</td><td>Cross-Origin Resource Sharing configuration</td></tr>
+</table>
+
+<!-- ==================== CHAPTER 3: SYSTEM ANALYSIS ==================== -->
+<div class="page-break"></div>
+<div class="page-header">
+  <span style="font-weight:bold;color:#003366;">SDJ International College</span>
+  <span class="site-name">CarRental</span>
+</div>
+
+<h1>3. System Analysis and Planning</h1>
+
+<h2>3.1 Existing System and its Drawbacks</h2>
+<p>
+  The traditional car rental industry relies heavily on manual, in-person, or phone-based booking processes. Customers are required to physically visit rental offices, fill out paper forms, and wait for agents to verify vehicle availability. This approach presents several significant drawbacks:
+</p>
+<ul>
+  <li><strong>Time-Consuming Process:</strong> Customers must travel to rental offices and spend considerable time on paperwork, vehicle selection, and payment processing. There is no way to browse and compare vehicles remotely.</li>
+  <li><strong>Limited Visibility:</strong> Customers have no real-time visibility into vehicle availability, pricing, or specifications before arriving at the rental office, leading to wasted trips and frustration.</li>
+  <li><strong>No 24/7 Access:</strong> Traditional rental offices operate during fixed business hours, preventing customers from making bookings during evenings, holidays, or emergencies.</li>
+  <li><strong>Manual Record Keeping:</strong> Booking records, vehicle logs, and customer data are maintained manually on paper or basic spreadsheets, making them prone to errors, data loss, and difficult to search or analyze.</li>
+  <li><strong>Lack of Analytics:</strong> Rental business owners have no automated way to track revenue trends, popular vehicles, peak booking periods, or customer behavior patterns.</li>
+  <li><strong>Double Booking Risk:</strong> Without a centralized digital system, there is a significant risk of overlapping bookings for the same vehicle, leading to customer dissatisfaction.</li>
+  <li><strong>No Centralized Fleet Management:</strong> Managing a fleet of vehicles across multiple locations is cumbersome without digital tools, making it difficult to track which vehicles are available, rented, or under maintenance.</li>
+</ul>
+
+<h2>3.2 Feasibility Study</h2>
+
+<h3>3.2.1 Technical Feasibility</h3>
+<p>
+  The project is technically feasible as it is built using well-established, open-source technologies. The MERN stack (MongoDB, Express.js, React.js, Node.js) provides a unified JavaScript development environment across both frontend and backend, reducing complexity and the learning curve. All the required tools and frameworks — React 19, Express 5, Mongoose 9, JWT, TailwindCSS, and Vite — are mature, well-documented, and have large community support. MongoDB Atlas provides a free-tier cloud database suitable for development and small-scale production use. The deployment platforms (Vercel for frontend, Railway for backend) offer free tiers that make hosting accessible without upfront costs. The development team possesses the requisite skills in JavaScript, HTML, CSS, and database management to successfully implement the project.
+</p>
+
+<h3>3.2.2 Economic Feasibility</h3>
+<p>
+  The project is economically viable as it leverages entirely free and open-source technologies. There are no licensing costs for any of the frameworks or libraries used. MongoDB Atlas offers a free M0 cluster with 512MB storage, sufficient for the project scope. Vercel and Railway provide generous free tiers for deployment. ImageKit offers a free plan with 20GB bandwidth per month. The only potential costs would arise when scaling to production with heavy traffic, which would be offset by the revenue generated from the car rental business itself. The total development cost is limited to the developer's time investment.
+</p>
+
+<h3>3.2.3 Operational Feasibility</h3>
+<p>
+  The system is designed with a user-friendly interface using modern UI/UX principles. The intuitive design ensures that both customers and administrators can adopt the system with minimal training. Customers need only basic internet browsing skills to search for cars, select dates, and make bookings. The admin panel provides a straightforward dashboard with clear navigation for managing cars, bookings, and viewing analytics. The responsive design ensures accessibility across desktops, tablets, and mobile devices. The system automates previously manual tasks (booking management, price calculation, availability checking), reducing operational overhead and human errors.
+</p>
+
+<h2>3.3 Requirement Gathering and Analysis</h2>
+
+<h3>3.3.1 Functional Requirements</h3>
+<table>
+  <tr><th>Module</th><th>Functional Requirement</th></tr>
+  <tr><td>User Registration</td><td>Users must be able to sign up with name, email, and password. Input validation is required. Duplicate email registration must be prevented.</td></tr>
+  <tr><td>User Authentication</td><td>Users must be able to log in with email and password. JWT access tokens (15-min expiry) and refresh tokens (7-day expiry) must be issued as HTTP-only cookies. Token refresh must be automatic and transparent.</td></tr>
+  <tr><td>Car Browsing</td><td>Users must be able to view all available cars with pagination (12 per page). Search functionality must support searching by name, brand, and description. Filtering must be available by type, brand, location, fuel type, transmission, and price range.</td></tr>
+  <tr><td>Car Details</td><td>Users must be able to view detailed information about a car including images, specifications (seats, fuel, transmission), location, price, and description.</td></tr>
+  <tr><td>Booking</td><td>Authenticated users must be able to book a car by selecting pickup and return dates. The system must validate dates, check for booking overlaps, and auto-calculate total price. Booking confirmation must be provided.</td></tr>
+  <tr><td>My Bookings</td><td>Users must be able to view their booking history with status (confirmed/cancelled/completed), dates, car details, and total price. Users must be able to cancel confirmed bookings.</td></tr>
+  <tr><td>Admin - Car Management</td><td>Admins must be able to add, edit, and delete cars with image upload support via ImageKit CDN.</td></tr>
+  <tr><td>Admin - Booking Management</td><td>Admins must be able to view all bookings with user and car details, and manage booking statuses.</td></tr>
+  <tr><td>Admin - Dashboard</td><td>Admins must have access to analytics showing total bookings, confirmed, cancelled, completed bookings, total revenue, monthly revenue trends, and recent booking activity.</td></tr>
+</table>
+
+<h3>3.3.2 Non-Functional Requirements</h3>
+<table>
+  <tr><th>Category</th><th>Requirement</th></tr>
+  <tr><td>Performance</td><td>API responses must complete within 500ms for standard queries. Frontend must achieve a Lighthouse score above 80.</td></tr>
+  <tr><td>Security</td><td>Passwords must be hashed with bcrypt (12 salt rounds). JWT tokens must be stored in HTTP-only cookies. API rate limiting at 100 requests per 15 minutes per IP. NoSQL injection prevention must be active. Security HTTP headers via Helmet.js.</td></tr>
+  <tr><td>Scalability</td><td>The application architecture must support horizontal scaling. Database indexes must be defined for frequently queried fields.</td></tr>
+  <tr><td>Usability</td><td>The UI must be responsive across devices (desktop, tablet, mobile). Loading states and error feedback must be provided for all user actions.</td></tr>
+  <tr><td>Reliability</td><td>The system must handle errors gracefully with a global error handler. MongoDB connection retries must be configured. Fallback images must be available if CDN images fail.</td></tr>
+</table>
+
+<!-- ==================== CHAPTER 4: PROPOSED SYSTEM ==================== -->
+<div class="page-break"></div>
+<div class="page-header">
+  <span style="font-weight:bold;color:#003366;">SDJ International College</span>
+  <span class="site-name">CarRental</span>
+</div>
+
+<h1>4. Proposed System</h1>
+
+<h2>4.1 Scope</h2>
+<p>
+  The CarRental system is designed to serve as a comprehensive online car rental management platform. The scope of the system encompasses the following key areas:
+</p>
+<ul>
+  <li><strong>End-User Portal:</strong> A public-facing website where customers can browse the car inventory, search and filter vehicles by various criteria (brand, type, fuel, transmission, price, location), view detailed car information with images, register/login to their accounts, book cars for specific date ranges, view their booking history, and cancel confirmed bookings.</li>
+  <li><strong>Admin Panel:</strong> A protected administrative interface where authorized administrators can manage the entire car fleet (add, edit, delete cars with image upload), view and manage all customer bookings, access a real-time analytics dashboard displaying key business metrics (total bookings, revenue, monthly trends), and handle customer support queries.</li>
+  <li><strong>Authentication &amp; Authorization:</strong> A secure, cookie-based authentication system with role-based access control (user/admin), automatic token refresh, and protected route guards on both frontend and backend.</li>
+  <li><strong>REST API:</strong> A well-structured RESTful API serving as the communication layer between the React frontend and the Node.js/Express backend, with input validation, error handling, and security middlewares.</li>
+</ul>
+<p>
+  The system is scoped for single-location or multi-city car rental businesses operating within India, with support for multiple car types including sedans, SUVs, hatchbacks, luxury, sports, vans, coupes, and supercars.
+</p>
+
+<h2>4.2 Project Modules Functionalities</h2>
+
+<h3>Module 1: Authentication Module</h3>
+<table>
+  <tr><th>Feature</th><th>Description</th></tr>
+  <tr><td>User Signup</td><td>Registration with name, email, and password. Input validation via express-validator. Password hashing with bcrypt (12 rounds). Duplicate email prevention.</td></tr>
+  <tr><td>User Login</td><td>Email and password authentication. Issues JWT access token (15-min expiry) and refresh token (7-day expiry) as HTTP-only, secure, SameSite=strict cookies.</td></tr>
+  <tr><td>Token Refresh</td><td>Automatic access token renewal using refresh token. Transparent to the user via Axios response interceptor.</td></tr>
+  <tr><td>Logout</td><td>Clears both access and refresh token cookies. Removes user data from localStorage.</td></tr>
+  <tr><td>Protected Routes</td><td>Frontend ProtectedRoute component with admin-only option. Backend middleware verifies JWT and attaches user to request.</td></tr>
+</table>
+
+<h3>Module 2: Car Management Module</h3>
+<table>
+  <tr><th>Feature</th><th>Description</th></tr>
+  <tr><td>Browse Cars</td><td>Public API to fetch all available cars with pagination (configurable limit). Returns car data sorted by newest first.</td></tr>
+  <tr><td>Search &amp; Filter</td><td>Search by car name, brand, or description. Filter by type, brand, location, transmission, fuel type, and price range (min/max).</td></tr>
+  <tr><td>Car Details</td><td>Individual car page showing full specifications, multiple images, description, features, location, and booking interface.</td></tr>
+  <tr><td>Add Car (Admin)</td><td>Admin form to add new cars with all fields. Image upload via ImageKit CDN with 5MB size limit and image-type validation.</td></tr>
+  <tr><td>Edit Car (Admin)</td><td>Admin can update any car's details including availability toggle.</td></tr>
+  <tr><td>Delete Car (Admin)</td><td>Admin can permanently remove a car from the inventory.</td></tr>
+</table>
+
+<h3>Module 3: Booking Module</h3>
+<table>
+  <tr><th>Feature</th><th>Description</th></tr>
+  <tr><td>Create Booking</td><td>Authenticated users select pickup and return dates. System validates dates (future pickup, return after pickup), checks for overlapping confirmed bookings, calculates total price (days × pricePerDay), and creates the booking.</td></tr>
+  <tr><td>My Bookings</td><td>Users view their personal booking history with car image, rental period, pickup location, car details, total price, booking date, and status badge.</td></tr>
+  <tr><td>Cancel Booking</td><td>Users can cancel their own confirmed bookings. Admins can cancel any booking. Only confirmed bookings can be cancelled.</td></tr>
+  <tr><td>View All Bookings (Admin)</td><td>Paginated listing of all bookings with user and car details, sorted by newest.</td></tr>
+</table>
+
+<h3>Module 4: Admin Dashboard Module</h3>
+<table>
+  <tr><th>Feature</th><th>Description</th></tr>
+  <tr><td>Statistics Cards</td><td>Displays total cars, total bookings, pending bookings, and completed bookings.</td></tr>
+  <tr><td>Revenue Analytics</td><td>Total revenue from confirmed and completed bookings. Monthly revenue breakdown for the last 6 months using MongoDB aggregation pipeline.</td></tr>
+  <tr><td>Recent Activity</td><td>Shows the latest 5 bookings with car name, date, amount, and status.</td></tr>
+</table>
+
+<h3>Module 5: Support &amp; Contact Module</h3>
+<table>
+  <tr><th>Feature</th><th>Description</th></tr>
+  <tr><td>Contact Page</td><td>Public contact form for general inquiries with name, email, and message fields.</td></tr>
+  <tr><td>Support Page</td><td>Authenticated user support with ticket-style interface for submitting help requests.</td></tr>
+  <tr><td>Admin Support</td><td>Admin view for managing and responding to user support queries.</td></tr>
+</table>
+
+<!-- ==================== CHAPTER 5: DETAIL PLANNING ==================== -->
+<div class="page-break"></div>
+<div class="page-header">
+  <span style="font-weight:bold;color:#003366;">SDJ International College</span>
+  <span class="site-name">CarRental</span>
+</div>
+
+<h1>5. Detail Planning</h1>
+
+<h2>5.1 Data Flow Diagram (DFD)</h2>
+
+<h3>5.1.1 Context Level (Level 0) DFD</h3>
+<div class="diagram-container">
+  <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-width:700px;">
+    <!-- User Entity -->
+    <rect x="20" y="50" width="130" height="50" rx="5" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+    <text x="85" y="80" text-anchor="middle" font-family="Arial" font-size="13" font-weight="bold" fill="#1565c0">User</text>
+    <!-- Admin Entity -->
+    <rect x="20" y="280" width="130" height="50" rx="5" fill="#fce4ec" stroke="#c62828" stroke-width="2"/>
+    <text x="85" y="310" text-anchor="middle" font-family="Arial" font-size="13" font-weight="bold" fill="#c62828">Admin</text>
+    <!-- Central Process -->
+    <circle cx="420" cy="190" r="90" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+    <text x="420" y="180" text-anchor="middle" font-family="Arial" font-size="12" font-weight="bold" fill="#2e7d32">CarRental</text>
+    <text x="420" y="200" text-anchor="middle" font-family="Arial" font-size="11" fill="#2e7d32">System</text>
+    <!-- Database -->
+    <rect x="650" y="155" width="130" height="55" rx="5" fill="#fff3e0" stroke="#e65100" stroke-width="2"/>
+    <text x="715" y="178" text-anchor="middle" font-family="Arial" font-size="12" font-weight="bold" fill="#e65100">MongoDB</text>
+    <text x="715" y="197" text-anchor="middle" font-family="Arial" font-size="11" fill="#e65100">Database</text>
+    <!-- Arrows: User to System -->
+    <line x1="150" y1="65" x2="333" y2="155" stroke="#1565c0" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
+    <text x="210" y="95" font-family="Arial" font-size="9" fill="#333">Register, Login, Search, Book</text>
+    <!-- Arrows: System to User -->
+    <line x1="333" y1="175" x2="150" y2="85" stroke="#2e7d32" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+    <text x="200" y="145" font-family="Arial" font-size="9" fill="#333">Car Listings, Booking Status</text>
+    <!-- Arrows: Admin to System -->
+    <line x1="150" y1="295" x2="340" y2="240" stroke="#c62828" stroke-width="1.5" marker-end="url(#arrowRed)"/>
+    <text x="195" y="285" font-family="Arial" font-size="9" fill="#333">Manage Cars, Bookings</text>
+    <!-- Arrows: System to Admin -->
+    <line x1="340" y1="255" x2="150" y2="310" stroke="#2e7d32" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+    <text x="195" y="310" font-family="Arial" font-size="9" fill="#333">Analytics, Reports</text>
+    <!-- Arrows: System to DB -->
+    <line x1="510" y1="183" x2="648" y2="183" stroke="#e65100" stroke-width="1.5" marker-end="url(#arrowOrange)"/>
+    <text x="570" y="175" font-family="Arial" font-size="9" fill="#333">Store/Retrieve</text>
+    <!-- Arrow definitions -->
+    <defs>
+      <marker id="arrowBlue" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#1565c0"/></marker>
+      <marker id="arrowGreen" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#2e7d32"/></marker>
+      <marker id="arrowRed" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#c62828"/></marker>
+      <marker id="arrowOrange" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#e65100"/></marker>
+    </defs>
+  </svg>
+  <div class="diagram-caption">Figure 5.1: Context Level (Level 0) Data Flow Diagram</div>
+</div>
+
+<h3>5.1.2 Level 1 DFD</h3>
+<div class="diagram-container">
+  <svg viewBox="0 0 850 520" xmlns="http://www.w3.org/2000/svg" style="max-width:750px;">
+    <!-- User -->
+    <rect x="10" y="210" width="110" height="45" rx="5" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+    <text x="65" y="237" text-anchor="middle" font-family="Arial" font-size="12" font-weight="bold" fill="#1565c0">User</text>
+    <!-- Process 1: Authentication -->
+    <circle cx="250" cy="80" r="50" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.5"/>
+    <text x="250" y="75" text-anchor="middle" font-family="Arial" font-size="10" font-weight="bold" fill="#2e7d32">1.0</text>
+    <text x="250" y="90" text-anchor="middle" font-family="Arial" font-size="9" fill="#2e7d32">Authentication</text>
+    <!-- Process 2: Car Browsing -->
+    <circle cx="250" cy="230" r="50" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.5"/>
+    <text x="250" y="225" text-anchor="middle" font-family="Arial" font-size="10" font-weight="bold" fill="#2e7d32">2.0</text>
+    <text x="250" y="240" text-anchor="middle" font-family="Arial" font-size="9" fill="#2e7d32">Car Browsing</text>
+    <!-- Process 3: Booking -->
+    <circle cx="250" cy="380" r="50" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.5"/>
+    <text x="250" y="375" text-anchor="middle" font-family="Arial" font-size="10" font-weight="bold" fill="#2e7d32">3.0</text>
+    <text x="250" y="390" text-anchor="middle" font-family="Arial" font-size="9" fill="#2e7d32">Booking Mgmt</text>
+    <!-- Process 4: Admin -->
+    <circle cx="540" cy="230" r="50" fill="#fce4ec" stroke="#c62828" stroke-width="1.5"/>
+    <text x="540" y="220" text-anchor="middle" font-family="Arial" font-size="10" font-weight="bold" fill="#c62828">4.0</text>
+    <text x="540" y="235" text-anchor="middle" font-family="Arial" font-size="9" fill="#c62828">Admin</text>
+    <text x="540" y="248" text-anchor="middle" font-family="Arial" font-size="9" fill="#c62828">Dashboard</text>
+    <!-- DB: Users -->
+    <rect x="470" y="40" width="110" height="40" rx="3" fill="#fff3e0" stroke="#e65100" stroke-width="1.5"/>
+    <text x="525" y="65" text-anchor="middle" font-family="Arial" font-size="10" font-weight="bold" fill="#e65100">D1: Users</text>
+    <!-- DB: Cars -->
+    <rect x="680" y="160" width="110" height="40" rx="3" fill="#fff3e0" stroke="#e65100" stroke-width="1.5"/>
+    <text x="735" y="185" text-anchor="middle" font-family="Arial" font-size="10" font-weight="bold" fill="#e65100">D2: Cars</text>
+    <!-- DB: Bookings -->
+    <rect x="680" y="310" width="110" height="40" rx="3" fill="#fff3e0" stroke="#e65100" stroke-width="1.5"/>
+    <text x="735" y="335" text-anchor="middle" font-family="Arial" font-size="10" font-weight="bold" fill="#e65100">D3: Bookings</text>
+    <!-- Arrows -->
+    <line x1="120" y1="215" x2="200" y2="100" stroke="#555" stroke-width="1.2" marker-end="url(#arrowGray)"/>
+    <line x1="120" y1="230" x2="200" y2="230" stroke="#555" stroke-width="1.2" marker-end="url(#arrowGray)"/>
+    <line x1="120" y1="245" x2="205" y2="365" stroke="#555" stroke-width="1.2" marker-end="url(#arrowGray)"/>
+    <line x1="300" y1="70" x2="470" y2="55" stroke="#e65100" stroke-width="1.2" marker-end="url(#arrowOrange)"/>
+    <line x1="300" y1="230" x2="680" y2="178" stroke="#e65100" stroke-width="1.2" marker-end="url(#arrowOrange)"/>
+    <line x1="300" y1="390" x2="680" y2="330" stroke="#e65100" stroke-width="1.2" marker-end="url(#arrowOrange)"/>
+    <line x1="540" y1="280" x2="680" y2="320" stroke="#c62828" stroke-width="1.2" marker-end="url(#arrowRed)"/>
+    <line x1="590" y1="230" x2="680" y2="180" stroke="#c62828" stroke-width="1.2" marker-end="url(#arrowRed)"/>
+    <defs>
+      <marker id="arrowGray" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#555"/></marker>
+    </defs>
+  </svg>
+  <div class="diagram-caption">Figure 5.2: Level 1 Data Flow Diagram</div>
+</div>
+
+<h2>5.2 Data Dictionary</h2>
+
+<h3>5.2.1 Users Collection</h3>
+<table>
+  <tr><th>Field Name</th><th>Data Type</th><th>Constraints</th><th>Description</th></tr>
+  <tr><td>_id</td><td>ObjectId</td><td>Primary Key, Auto-generated</td><td>Unique identifier for each user</td></tr>
+  <tr><td>name</td><td>String</td><td>Required, Trim, Max 50 chars</td><td>Full name of the user</td></tr>
+  <tr><td>email</td><td>String</td><td>Required, Unique, Lowercase, Regex validated</td><td>Email address used for login</td></tr>
+  <tr><td>password</td><td>String</td><td>Required, Min 6 chars, Select: false</td><td>Hashed password (bcrypt, 12 rounds)</td></tr>
+  <tr><td>role</td><td>String</td><td>Enum: ["user", "admin"], Default: "user"</td><td>User role for access control</td></tr>
+  <tr><td>refreshToken</td><td>String</td><td>Select: false</td><td>JWT refresh token for session management</td></tr>
+  <tr><td>createdAt</td><td>Date</td><td>Auto-generated (timestamps)</td><td>Account creation timestamp</td></tr>
+  <tr><td>updatedAt</td><td>Date</td><td>Auto-generated (timestamps)</td><td>Last update timestamp</td></tr>
+</table>
+
+<h3>5.2.2 Cars Collection</h3>
+<table>
+  <tr><th>Field Name</th><th>Data Type</th><th>Constraints</th><th>Description</th></tr>
+  <tr><td>_id</td><td>ObjectId</td><td>Primary Key, Auto-generated</td><td>Unique identifier for each car</td></tr>
+  <tr><td>name</td><td>String</td><td>Required, Trim</td><td>Car model name (e.g., "Camry")</td></tr>
+  <tr><td>brand</td><td>String</td><td>Required, Trim</td><td>Manufacturer brand (e.g., "Toyota")</td></tr>
+  <tr><td>type</td><td>String</td><td>Required, Enum: ["sedan","suv","hatchback","luxury","sports","van","coupe","supercar"]</td><td>Vehicle body type category</td></tr>
+  <tr><td>year</td><td>Number</td><td>Required</td><td>Manufacturing year</td></tr>
+  <tr><td>seats</td><td>Number</td><td>Required, Min: 1, Max: 15</td><td>Passenger seating capacity</td></tr>
+  <tr><td>transmission</td><td>String</td><td>Required, Enum: ["automatic","manual"]</td><td>Transmission type</td></tr>
+  <tr><td>fuelType</td><td>String</td><td>Required, Enum: ["petrol","diesel","electric","hybrid"]</td><td>Fuel/power type</td></tr>
+  <tr><td>pricePerDay</td><td>Number</td><td>Required, Min: 0</td><td>Daily rental price in USD</td></tr>
+  <tr><td>location</td><td>String</td><td>Required, Trim</td><td>Pickup location city</td></tr>
+  <tr><td>available</td><td>Boolean</td><td>Default: true</td><td>Whether the car is currently listed</td></tr>
+  <tr><td>images</td><td>Array[String]</td><td>Optional</td><td>Array of image URLs (ImageKit CDN)</td></tr>
+  <tr><td>description</td><td>String</td><td>Default: ""</td><td>Detailed car description</td></tr>
+  <tr><td>createdAt</td><td>Date</td><td>Auto-generated</td><td>Record creation timestamp</td></tr>
+  <tr><td>updatedAt</td><td>Date</td><td>Auto-generated</td><td>Last modification timestamp</td></tr>
+</table>
+
+<h3>5.2.3 Bookings Collection</h3>
+<table>
+  <tr><th>Field Name</th><th>Data Type</th><th>Constraints</th><th>Description</th></tr>
+  <tr><td>_id</td><td>ObjectId</td><td>Primary Key, Auto-generated</td><td>Unique identifier for each booking</td></tr>
+  <tr><td>user</td><td>ObjectId</td><td>Required, Ref: "User"</td><td>Reference to the user who made the booking</td></tr>
+  <tr><td>car</td><td>ObjectId</td><td>Required, Ref: "Car"</td><td>Reference to the booked car</td></tr>
+  <tr><td>pickupDate</td><td>Date</td><td>Required</td><td>Rental start date</td></tr>
+  <tr><td>returnDate</td><td>Date</td><td>Required</td><td>Rental end date</td></tr>
+  <tr><td>totalPrice</td><td>Number</td><td>Required, Min: 0</td><td>Total cost (days × pricePerDay)</td></tr>
+  <tr><td>status</td><td>String</td><td>Enum: ["confirmed","cancelled","completed"], Default: "confirmed"</td><td>Current booking status</td></tr>
+  <tr><td>createdAt</td><td>Date</td><td>Auto-generated</td><td>Booking creation timestamp</td></tr>
+  <tr><td>updatedAt</td><td>Date</td><td>Auto-generated</td><td>Last update timestamp</td></tr>
+</table>
+
+<h2>5.3 Process Specification / Activity Flow Diagram</h2>
+
+<h3>5.3.1 Booking Process Activity Flow</h3>
+<div class="diagram-container">
+  <svg viewBox="0 0 600 700" xmlns="http://www.w3.org/2000/svg" style="max-width:500px;">
+    <!-- Start -->
+    <circle cx="300" cy="30" r="18" fill="#2e7d32" stroke="#1b5e20" stroke-width="2"/>
+    <text x="300" y="35" text-anchor="middle" font-family="Arial" font-size="10" fill="#fff" font-weight="bold">Start</text>
+    <line x1="300" y1="48" x2="300" y2="70" stroke="#555" stroke-width="1.5" marker-end="url(#arrowGray)"/>
+    <!-- Step 1 -->
+    <rect x="200" y="70" width="200" height="40" rx="5" fill="#e3f2fd" stroke="#1565c0" stroke-width="1.5"/>
+    <text x="300" y="95" text-anchor="middle" font-family="Arial" font-size="11" fill="#1565c0">Browse Cars</text>
+    <line x1="300" y1="110" x2="300" y2="135" stroke="#555" stroke-width="1.5" marker-end="url(#arrowGray)"/>
+    <!-- Step 2 -->
+    <rect x="200" y="135" width="200" height="40" rx="5" fill="#e3f2fd" stroke="#1565c0" stroke-width="1.5"/>
+    <text x="300" y="160" text-anchor="middle" font-family="Arial" font-size="11" fill="#1565c0">Select Car &amp; View Details</text>
+    <line x1="300" y1="175" x2="300" y2="200" stroke="#555" stroke-width="1.5" marker-end="url(#arrowGray)"/>
+    <!-- Step 3 -->
+    <rect x="200" y="200" width="200" height="40" rx="5" fill="#e3f2fd" stroke="#1565c0" stroke-width="1.5"/>
+    <text x="300" y="225" text-anchor="middle" font-family="Arial" font-size="11" fill="#1565c0">Click "Book Now"</text>
+    <line x1="300" y1="240" x2="300" y2="270" stroke="#555" stroke-width="1.5" marker-end="url(#arrowGray)"/>
+    <!-- Decision: Logged in? -->
+    <polygon points="300,270 380,310 300,350 220,310" fill="#fff3e0" stroke="#e65100" stroke-width="1.5"/>
+    <text x="300" y="313" text-anchor="middle" font-family="Arial" font-size="10" fill="#e65100">Logged in?</text>
+    <!-- No -->
+    <line x1="220" y1="310" x2="100" y2="310" stroke="#c62828" stroke-width="1.5" marker-end="url(#arrowRed)"/>
+    <text x="150" y="300" font-family="Arial" font-size="9" fill="#c62828">No</text>
+    <rect x="30" y="290" width="100" height="35" rx="5" fill="#fce4ec" stroke="#c62828" stroke-width="1.5"/>
+    <text x="80" y="312" text-anchor="middle" font-family="Arial" font-size="10" fill="#c62828">Login/Signup</text>
+    <!-- Yes -->
+    <line x1="300" y1="350" x2="300" y2="380" stroke="#2e7d32" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+    <text x="315" y="367" font-family="Arial" font-size="9" fill="#2e7d32">Yes</text>
+    <!-- Step 4 -->
+    <rect x="200" y="380" width="200" height="40" rx="5" fill="#e3f2fd" stroke="#1565c0" stroke-width="1.5"/>
+    <text x="300" y="405" text-anchor="middle" font-family="Arial" font-size="11" fill="#1565c0">Select Dates</text>
+    <line x1="300" y1="420" x2="300" y2="450" stroke="#555" stroke-width="1.5" marker-end="url(#arrowGray)"/>
+    <!-- Decision: Valid? -->
+    <polygon points="300,450 380,490 300,530 220,490" fill="#fff3e0" stroke="#e65100" stroke-width="1.5"/>
+    <text x="300" y="490" text-anchor="middle" font-family="Arial" font-size="9" fill="#e65100">Valid &amp; No</text>
+    <text x="300" y="502" text-anchor="middle" font-family="Arial" font-size="9" fill="#e65100">Overlap?</text>
+    <!-- No overlap - yes -->
+    <line x1="300" y1="530" x2="300" y2="560" stroke="#2e7d32" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+    <text x="315" y="548" font-family="Arial" font-size="9" fill="#2e7d32">Yes</text>
+    <!-- Error -->
+    <line x1="380" y1="490" x2="500" y2="490" stroke="#c62828" stroke-width="1.5" marker-end="url(#arrowRed)"/>
+    <text x="430" y="480" font-family="Arial" font-size="9" fill="#c62828">No</text>
+    <rect x="490" y="472" width="100" height="35" rx="5" fill="#fce4ec" stroke="#c62828" stroke-width="1.5"/>
+    <text x="540" y="494" text-anchor="middle" font-family="Arial" font-size="10" fill="#c62828">Show Error</text>
+    <!-- Step 5 -->
+    <rect x="200" y="560" width="200" height="40" rx="5" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.5"/>
+    <text x="300" y="585" text-anchor="middle" font-family="Arial" font-size="11" fill="#2e7d32">Confirm Booking</text>
+    <line x1="300" y1="600" x2="300" y2="630" stroke="#555" stroke-width="1.5" marker-end="url(#arrowGray)"/>
+    <!-- Step 6 -->
+    <rect x="190" y="630" width="220" height="40" rx="5" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.5"/>
+    <text x="300" y="655" text-anchor="middle" font-family="Arial" font-size="11" fill="#2e7d32">Booking Saved to DB ✓</text>
+  </svg>
+  <div class="diagram-caption">Figure 5.3: Activity Flow Diagram — Booking Process</div>
+</div>
+
+<h2>5.4 Entity-Relationship Diagram</h2>
+<div class="diagram-container">
+  <svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" style="max-width:700px;">
+    <!-- User Entity -->
+    <rect x="30" y="80" width="200" height="220" rx="5" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+    <rect x="30" y="80" width="200" height="35" rx="5" fill="#1565c0"/>
+    <text x="130" y="103" text-anchor="middle" font-family="Arial" font-size="13" fill="#fff" font-weight="bold">User</text>
+    <text x="45" y="135" font-family="Arial" font-size="10" fill="#333">🔑 _id : ObjectId (PK)</text>
+    <text x="45" y="155" font-family="Arial" font-size="10" fill="#333">    name : String</text>
+    <text x="45" y="175" font-family="Arial" font-size="10" fill="#333">    email : String (Unique)</text>
+    <text x="45" y="195" font-family="Arial" font-size="10" fill="#333">    password : String (hashed)</text>
+    <text x="45" y="215" font-family="Arial" font-size="10" fill="#333">    role : String [user|admin]</text>
+    <text x="45" y="235" font-family="Arial" font-size="10" fill="#333">    refreshToken : String</text>
+    <text x="45" y="255" font-family="Arial" font-size="10" fill="#333">    createdAt : Date</text>
+    <text x="45" y="275" font-family="Arial" font-size="10" fill="#333">    updatedAt : Date</text>
+    <!-- Booking Entity -->
+    <rect x="300" y="80" width="200" height="220" rx="5" fill="#fff3e0" stroke="#e65100" stroke-width="2"/>
+    <rect x="300" y="80" width="200" height="35" rx="5" fill="#e65100"/>
+    <text x="400" y="103" text-anchor="middle" font-family="Arial" font-size="13" fill="#fff" font-weight="bold">Booking</text>
+    <text x="315" y="135" font-family="Arial" font-size="10" fill="#333">🔑 _id : ObjectId (PK)</text>
+    <text x="315" y="155" font-family="Arial" font-size="10" fill="#333">🔗 user : ObjectId (FK)</text>
+    <text x="315" y="175" font-family="Arial" font-size="10" fill="#333">🔗 car : ObjectId (FK)</text>
+    <text x="315" y="195" font-family="Arial" font-size="10" fill="#333">    pickupDate : Date</text>
+    <text x="315" y="215" font-family="Arial" font-size="10" fill="#333">    returnDate : Date</text>
+    <text x="315" y="235" font-family="Arial" font-size="10" fill="#333">    totalPrice : Number</text>
+    <text x="315" y="255" font-family="Arial" font-size="10" fill="#333">    status : String</text>
+    <text x="315" y="275" font-family="Arial" font-size="10" fill="#333">    createdAt : Date</text>
+    <!-- Car Entity -->
+    <rect x="570" y="50" width="200" height="280" rx="5" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+    <rect x="570" y="50" width="200" height="35" rx="5" fill="#2e7d32"/>
+    <text x="670" y="73" text-anchor="middle" font-family="Arial" font-size="13" fill="#fff" font-weight="bold">Car</text>
+    <text x="585" y="105" font-family="Arial" font-size="10" fill="#333">🔑 _id : ObjectId (PK)</text>
+    <text x="585" y="125" font-family="Arial" font-size="10" fill="#333">    name : String</text>
+    <text x="585" y="145" font-family="Arial" font-size="10" fill="#333">    brand : String</text>
+    <text x="585" y="165" font-family="Arial" font-size="10" fill="#333">    type : String (enum)</text>
+    <text x="585" y="185" font-family="Arial" font-size="10" fill="#333">    year : Number</text>
+    <text x="585" y="205" font-family="Arial" font-size="10" fill="#333">    seats : Number</text>
+    <text x="585" y="225" font-family="Arial" font-size="10" fill="#333">    transmission : String</text>
+    <text x="585" y="245" font-family="Arial" font-size="10" fill="#333">    fuelType : String</text>
+    <text x="585" y="265" font-family="Arial" font-size="10" fill="#333">    pricePerDay : Number</text>
+    <text x="585" y="285" font-family="Arial" font-size="10" fill="#333">    location : String</text>
+    <text x="585" y="305" font-family="Arial" font-size="10" fill="#333">    images : Array[String]</text>
+    <!-- Relationship lines -->
+    <line x1="230" y1="190" x2="300" y2="190" stroke="#333" stroke-width="2"/>
+    <text x="265" y="183" text-anchor="middle" font-family="Arial" font-size="9" fill="#555">1 : N</text>
+    <text x="260" y="210" text-anchor="middle" font-family="Arial" font-size="8" fill="#888">makes</text>
+    <line x1="500" y1="190" x2="570" y2="190" stroke="#333" stroke-width="2"/>
+    <text x="535" y="183" text-anchor="middle" font-family="Arial" font-size="9" fill="#555">N : 1</text>
+    <text x="535" y="210" text-anchor="middle" font-family="Arial" font-size="8" fill="#888">for</text>
+  </svg>
+  <div class="diagram-caption">Figure 5.4: Entity-Relationship Diagram</div>
+</div>
+
+<!-- ==================== CHAPTER 6: SYSTEM DESIGN ==================== -->
+<div class="page-break"></div>
+<div class="page-header">
+  <span style="font-weight:bold;color:#003366;">SDJ International College</span>
+  <span class="site-name">CarRental</span>
+</div>
+
+<h1>6. System Design</h1>
+
+<h2>6.1 Database Design</h2>
+<p>
+  The application uses <strong>MongoDB</strong>, a NoSQL document-oriented database, hosted on MongoDB Atlas cloud service. The database follows a denormalized design suitable for document databases, with references (ObjectId) between collections where relationships exist. Three primary collections are used:
+</p>
+
+<h3>6.1.1 Database Schema Overview</h3>
+<table>
+  <tr><th>Collection</th><th>Purpose</th><th>Indexes</th></tr>
+  <tr><td>users</td><td>Stores registered user accounts with credentials and roles</td><td>email (unique)</td></tr>
+  <tr><td>cars</td><td>Stores vehicle inventory with specifications and images</td><td>location+available (compound), brand, type, pricePerDay</td></tr>
+  <tr><td>bookings</td><td>Stores rental booking records linking users to cars</td><td>user+status (compound), car+pickupDate+returnDate (compound)</td></tr>
+</table>
+
+<h3>6.1.2 Relationships</h3>
+<ul>
+  <li><strong>User → Booking:</strong> One-to-Many relationship. A single user can create multiple bookings. The <code>user</code> field in the Booking collection stores the ObjectId reference to the User document.</li>
+  <li><strong>Car → Booking:</strong> One-to-Many relationship. A single car can have multiple bookings over time. The <code>car</code> field in the Booking collection stores the ObjectId reference to the Car document.</li>
+  <li><strong>Booking:</strong> Acts as a junction entity linking Users and Cars with additional attributes (dates, price, status).</li>
+</ul>
+
+<h3>6.1.3 Database Indexing Strategy</h3>
+<p>
+  Performance-optimized indexes are defined on the Car and Booking schemas to ensure fast query execution:
+</p>
+<div class="code-block">// Car Schema Indexes
+carSchema.index({ location: 1, available: 1 });  // Compound: search by city + availability
+carSchema.index({ brand: 1 });                    // Filter by brand
+carSchema.index({ type: 1 });                     // Filter by car type
+carSchema.index({ pricePerDay: 1 });               // Sort/filter by price
+
+// Booking Schema Indexes
+bookingSchema.index({ user: 1, status: 1 });                     // User's booking history
+bookingSchema.index({ car: 1, pickupDate: 1, returnDate: 1 });   // Overlap detection</div>
+
+<h2>6.2 Input Design</h2>
+<p>
+  Input design focuses on creating intuitive, validated forms that ensure data integrity and provide immediate feedback to users. All forms implement both client-side and server-side validation.
+</p>
+
+<h3>6.2.1 User Registration Form</h3>
+<table>
+  <tr><th>Field</th><th>Type</th><th>Validation</th><th>UI Element</th></tr>
+  <tr><td>Name</td><td>Text</td><td>Required, non-empty after trim</td><td>Text input with placeholder</td></tr>
+  <tr><td>Email</td><td>Email</td><td>Required, valid email format (regex), unique check</td><td>Email input with placeholder</td></tr>
+  <tr><td>Password</td><td>Password</td><td>Required, minimum 6 characters</td><td>Password input with visibility toggle</td></tr>
+</table>
+
+<h3>6.2.2 Login Form</h3>
+<table>
+  <tr><th>Field</th><th>Type</th><th>Validation</th><th>UI Element</th></tr>
+  <tr><td>Email</td><td>Email</td><td>Required, valid email format</td><td>Email input</td></tr>
+  <tr><td>Password</td><td>Password</td><td>Required, non-empty</td><td>Password input</td></tr>
+</table>
+
+<h3>6.2.3 Booking Form</h3>
+<table>
+  <tr><th>Field</th><th>Type</th><th>Validation</th><th>UI Element</th></tr>
+  <tr><td>Car ID</td><td>Hidden</td><td>Required, valid MongoDB ObjectId</td><td>Auto-populated from car selection</td></tr>
+  <tr><td>Pickup Date</td><td>Date</td><td>Required, ISO 8601, must be in future</td><td>Date picker (min: today)</td></tr>
+  <tr><td>Return Date</td><td>Date</td><td>Required, ISO 8601, must be after pickup</td><td>Date picker (min: pickup date)</td></tr>
+</table>
+
+<h3>6.2.4 Add Car Form (Admin)</h3>
+<table>
+  <tr><th>Field</th><th>Type</th><th>Validation</th><th>UI Element</th></tr>
+  <tr><td>Name</td><td>Text</td><td>Required</td><td>Text input</td></tr>
+  <tr><td>Brand</td><td>Text</td><td>Required</td><td>Text input</td></tr>
+  <tr><td>Type</td><td>Select</td><td>Required, must be one of 8 predefined types</td><td>Dropdown select</td></tr>
+  <tr><td>Year</td><td>Number</td><td>Required</td><td>Number input</td></tr>
+  <tr><td>Seats</td><td>Number</td><td>Required, 1–15</td><td>Number input</td></tr>
+  <tr><td>Transmission</td><td>Select</td><td>Required, automatic/manual</td><td>Dropdown select</td></tr>
+  <tr><td>Fuel Type</td><td>Select</td><td>Required, petrol/diesel/electric/hybrid</td><td>Dropdown select</td></tr>
+  <tr><td>Price Per Day</td><td>Number</td><td>Required, ≥ 0</td><td>Number input</td></tr>
+  <tr><td>Location</td><td>Text</td><td>Required</td><td>Text input</td></tr>
+  <tr><td>Description</td><td>Textarea</td><td>Optional</td><td>Multi-line textarea</td></tr>
+  <tr><td>Image</td><td>File</td><td>Optional, image/* only, max 5MB</td><td>File upload input</td></tr>
+</table>
+
+<h2>6.3 Output Design</h2>
+<p>
+  Output design defines how data is presented to users across different views and pages of the application.
+</p>
+
+<h3>6.3.1 Frontend Output Screens</h3>
+<table>
+  <tr><th>Screen</th><th>Output Data</th><th>Format</th></tr>
+  <tr><td>Home Page</td><td>3 featured cars, hero section, testimonials, newsletter</td><td>Card grid with images, animations</td></tr>
+  <tr><td>Cars Listing</td><td>Paginated car cards with image, name, brand, type, price, specs</td><td>3-column responsive grid, 9 per page</td></tr>
+  <tr><td>Car Detail</td><td>Full car info: image gallery, specs (seats, fuel, transmission, location), description, features, price, booking form</td><td>2-column layout (image + booking card)</td></tr>
+  <tr><td>My Bookings</td><td>Booking list with car image, rental period, location, total price, status badge, cancel button</td><td>Stacked cards with status indicators</td></tr>
+  <tr><td>Admin Dashboard</td><td>Stats (total cars, bookings, pending, completed), total revenue, recent bookings list</td><td>Stat cards + table + revenue display</td></tr>
+  <tr><td>Admin Manage Cars</td><td>Car inventory table with edit/delete actions</td><td>Tabular layout with action buttons</td></tr>
+  <tr><td>Admin Manage Bookings</td><td>All bookings with user info, car info, dates, amount, status</td><td>Paginated table</td></tr>
+</table>
+
+<h3>6.3.2 API Response Formats</h3>
+<p>All API responses follow a consistent JSON structure:</p>
+<div class="code-block">// Success Response (Car Listing)
+{
+  "cars": [ { "_id": "...", "name": "Camry", "brand": "Toyota", ... } ],
+  "page": 1,
+  "totalPages": 3,
+  "total": 25
+}
+
+// Success Response (Booking Creation)
+{
+  "_id": "...",
+  "user": "...",
+  "car": { "name": "Camry", "brand": "Toyota", ... },
+  "pickupDate": "2026-04-01T00:00:00.000Z",
+  "returnDate": "2026-04-05T00:00:00.000Z",
+  "totalPrice": 400,
+  "status": "confirmed"
+}
+
+// Error Response
+{
+  "message": "Car is already booked for the selected dates"
+}</div>
+
+<!-- ==================== CHAPTER 7: SOFTWARE TESTING ==================== -->
+<div class="page-break"></div>
+<div class="page-header">
+  <span style="font-weight:bold;color:#003366;">SDJ International College</span>
+  <span class="site-name">CarRental</span>
+</div>
+
+<h1>7. Software Testing</h1>
+<p>
+  Software testing is a critical phase that ensures the application functions correctly, securely, and reliably. The CarRental system was tested using multiple testing strategies to validate all functional and non-functional requirements.
+</p>
+
+<h2>7.1 Unit Testing</h2>
+<p>
+  Unit testing focuses on testing individual components, functions, and modules in isolation to verify correct behavior.
+</p>
+
+<h3>7.1.1 Backend Unit Tests</h3>
+<table>
+  <tr><th>Test Case ID</th><th>Module</th><th>Test Description</th><th>Expected Result</th><th>Status</th></tr>
+  <tr><td>UT-01</td><td>Auth Controller</td><td>Signup with valid credentials</td><td>Returns 201 with user data and sets cookies</td><td>✅ Pass</td></tr>
+  <tr><td>UT-02</td><td>Auth Controller</td><td>Signup with duplicate email</td><td>Returns 400 with "User already exists" message</td><td>✅ Pass</td></tr>
+  <tr><td>UT-03</td><td>Auth Controller</td><td>Login with correct credentials</td><td>Returns 200 with user data and JWT cookies</td><td>✅ Pass</td></tr>
+  <tr><td>UT-04</td><td>Auth Controller</td><td>Login with wrong password</td><td>Returns 401 with "Invalid email or password"</td><td>✅ Pass</td></tr>
+  <tr><td>UT-05</td><td>User Model</td><td>Password hashing on save</td><td>Password is stored as bcrypt hash, not plaintext</td><td>✅ Pass</td></tr>
+  <tr><td>UT-06</td><td>User Model</td><td>comparePassword method</td><td>Returns true for correct password, false for wrong</td><td>✅ Pass</td></tr>
+  <tr><td>UT-07</td><td>Car Controller</td><td>Get cars with pagination</td><td>Returns correct page and total count</td><td>✅ Pass</td></tr>
+  <tr><td>UT-08</td><td>Car Controller</td><td>Get cars with search filter</td><td>Returns only matching cars by name/brand/description</td><td>✅ Pass</td></tr>
+  <tr><td>UT-09</td><td>Booking Controller</td><td>Create booking with valid dates</td><td>Returns 201 with booking data and calculated price</td><td>✅ Pass</td></tr>
+  <tr><td>UT-10</td><td>Booking Controller</td><td>Create booking with past pickup date</td><td>Returns 400 with validation error</td><td>✅ Pass</td></tr>
+  <tr><td>UT-11</td><td>Booking Controller</td><td>Create overlapping booking</td><td>Returns 400 with "Car is already booked" message</td><td>✅ Pass</td></tr>
+  <tr><td>UT-12</td><td>Validate Middleware</td><td>Request with invalid fields</td><td>Returns 400 with field-specific error messages</td><td>✅ Pass</td></tr>
+</table>
+
+<h3>7.1.2 Frontend Unit Tests</h3>
+<table>
+  <tr><th>Test Case ID</th><th>Component</th><th>Test Description</th><th>Expected Result</th><th>Status</th></tr>
+  <tr><td>FUT-01</td><td>CarCard</td><td>Renders car name, brand, price, specs</td><td>All fields displayed correctly</td><td>✅ Pass</td></tr>
+  <tr><td>FUT-02</td><td>CarCard</td><td>Fallback image on broken CDN URL</td><td>Default fallback image shown</td><td>✅ Pass</td></tr>
+  <tr><td>FUT-03</td><td>BookingModal</td><td>Price calculation (days × pricePerDay)</td><td>Shows correct total based on date range</td><td>✅ Pass</td></tr>
+  <tr><td>FUT-04</td><td>BookingModal</td><td>Submit with no dates selected</td><td>Shows "Please select both dates" toast error</td><td>✅ Pass</td></tr>
+  <tr><td>FUT-05</td><td>ProtectedRoute</td><td>Access without login</td><td>Redirects to /login page</td><td>✅ Pass</td></tr>
+  <tr><td>FUT-06</td><td>ProtectedRoute</td><td>Non-admin accesses admin route</td><td>Access denied, redirect to home</td><td>✅ Pass</td></tr>
+  <tr><td>FUT-07</td><td>AuthContext</td><td>Login stores user in localStorage</td><td>User data persisted across page reloads</td><td>✅ Pass</td></tr>
+  <tr><td>FUT-08</td><td>Axios Interceptor</td><td>Auto-refresh on 401 response</td><td>Silently refreshes token and retries request</td><td>✅ Pass</td></tr>
+</table>
+
+<h2>7.2 Integration Testing</h2>
+<p>
+  Integration testing verifies the interaction between multiple modules and the flow of data across the system layers (frontend ↔ API ↔ database).
+</p>
+<table>
+  <tr><th>Test Case ID</th><th>Integration</th><th>Test Description</th><th>Expected Result</th><th>Status</th></tr>
+  <tr><td>IT-01</td><td>Signup → Login → Browse</td><td>Register a new user, login, and browse cars</td><td>Full flow completes with 200 OK responses</td><td>✅ Pass</td></tr>
+  <tr><td>IT-02</td><td>Login → Book → My Bookings</td><td>Login, book a car, verify it appears in My Bookings</td><td>Booking visible with correct status and details</td><td>✅ Pass</td></tr>
+  <tr><td>IT-03</td><td>Admin Login → Add Car → Browse</td><td>Admin adds a new car, verify it appears in public listing</td><td>New car visible in Cars page</td><td>✅ Pass</td></tr>
+  <tr><td>IT-04</td><td>Book → Cancel → Re-book</td><td>Book a car, cancel booking, book same dates again</td><td>Second booking succeeds after cancellation</td><td>✅ Pass</td></tr>
+  <tr><td>IT-05</td><td>Token Expiry → Auto-Refresh</td><td>Wait for access token to expire, make API call</td><td>Axios interceptor refreshes token transparently</td><td>✅ Pass</td></tr>
+  <tr><td>IT-06</td><td>Admin Dashboard → Analytics</td><td>Create bookings, verify analytics dashboard data</td><td>Dashboard shows correct counts and revenue</td><td>✅ Pass</td></tr>
+</table>
+
+<h2>7.3 System Testing</h2>
+<p>
+  System testing validates the complete, integrated application against the original requirements to ensure end-to-end functionality.
+</p>
+<table>
+  <tr><th>Test Case ID</th><th>Requirement</th><th>Test Description</th><th>Expected Result</th><th>Status</th></tr>
+  <tr><td>ST-01</td><td>Security</td><td>Attempt NoSQL injection in login (email: {"$gt":""})</td><td>Input sanitized, login fails with 401</td><td>✅ Pass</td></tr>
+  <tr><td>ST-02</td><td>Security</td><td>Send 150 requests in 15 minutes from same IP</td><td>Rate limiter blocks after 100th request</td><td>✅ Pass</td></tr>
+  <tr><td>ST-03</td><td>Security</td><td>Access admin API without admin role</td><td>Returns 403 "Not authorized for this action"</td><td>✅ Pass</td></tr>
+  <tr><td>ST-04</td><td>Performance</td><td>Load Cars page with 25+ cars</td><td>Page loads within 2 seconds, pagination works</td><td>✅ Pass</td></tr>
+  <tr><td>ST-05</td><td>Responsiveness</td><td>View all pages on mobile (375px), tablet (768px), desktop (1440px)</td><td>Layout adapts correctly at all breakpoints</td><td>✅ Pass</td></tr>
+  <tr><td>ST-06</td><td>Error Handling</td><td>Submit form with server offline</td><td>User sees toast error, no crash</td><td>✅ Pass</td></tr>
+  <tr><td>ST-07</td><td>Cross-Browser</td><td>Test on Chrome, Firefox, Edge</td><td>All features work across browsers</td><td>✅ Pass</td></tr>
+  <tr><td>ST-08</td><td>Data Integrity</td><td>Concurrent booking attempt for same car/dates</td><td>Only one booking succeeds, other gets overlap error</td><td>✅ Pass</td></tr>
+</table>
+
+<!-- ==================== CHAPTER 8: FUTURE SCOPE ==================== -->
+<div class="page-break"></div>
+<div class="page-header">
+  <span style="font-weight:bold;color:#003366;">SDJ International College</span>
+  <span class="site-name">CarRental</span>
+</div>
+
+<h1>8. Future Scope of Enhancements</h1>
+<p>
+  While the current version of CarRental provides a complete and functional car rental management system, there are several areas where the platform can be enhanced to deliver greater value and a richer user experience. The following enhancements are planned for future iterations:
+</p>
+
+<h3>8.1 Online Payment Integration</h3>
+<p>
+  Integrate payment gateways such as <strong>Razorpay</strong> or <strong>Stripe</strong> to enable users to pay for bookings directly through the platform. This would include secure payment processing, automatic invoice generation, refund handling for cancelled bookings, and support for multiple payment methods (UPI, credit/debit cards, net banking, wallets).
+</p>
+
+<h3>8.2 Mobile Application</h3>
+<p>
+  Develop a cross-platform mobile application using <strong>React Native</strong> or <strong>Flutter</strong> to provide a native mobile experience. This would leverage the existing REST API backend and add push notifications for booking confirmations, reminders, and promotional offers.
+</p>
+
+<h3>8.3 AI-Based Car Recommendations</h3>
+<p>
+  Implement a machine learning-based recommendation engine that suggests cars to users based on their browsing history, previous bookings, budget preferences, and travel patterns. This would enhance user engagement and conversion rates.
+</p>
+
+<h3>8.4 GPS-Based Location Tracking</h3>
+<p>
+  Integrate real-time GPS tracking to show nearby available pickup locations on a map, enable navigation to pickup points, and allow fleet managers to monitor vehicle locations for security and logistics optimization.
+</p>
+
+<h3>8.5 Multi-Language Support (i18n)</h3>
+<p>
+  Add internationalization support using libraries like <strong>react-i18next</strong> to make the platform accessible to users in multiple Indian languages (Hindi, Gujarati, Tamil, etc.) and international languages, broadening the user base.
+</p>
+
+<h3>8.6 Review and Rating System</h3>
+<p>
+  Allow users to rate and review cars after completing their rental period. Display average ratings and reviews on car listing and detail pages to help future customers make informed decisions and build trust in the platform.
+</p>
+
+<h3>8.7 Email Notifications</h3>
+<p>
+  Implement automated email notifications using services like <strong>Nodemailer</strong> or <strong>SendGrid</strong> for booking confirmations, cancellation acknowledgments, rental reminders (1 day before pickup), return reminders, and promotional newsletters.
+</p>
+
+<h3>8.8 Advanced Admin Analytics</h3>
+<p>
+  Enhance the admin dashboard with interactive charts (using Chart.js or Recharts) for visual data representation, including monthly booking trends, revenue graphs, popular car models, customer demographics, fleet utilization rates, and downloadable CSV/PDF reports.
+</p>
+
+<h3>8.9 Driver Option</h3>
+<p>
+  Provide users with an option to book a driver along with the car rental. This would include a driver management module in the admin panel, driver rating system, and additional pricing calculations based on distance and duration.
+</p>
+
+<!-- ==================== CHAPTER 9: BIBLIOGRAPHY ==================== -->
+<div class="page-break"></div>
+<div class="page-header">
+  <span style="font-weight:bold;color:#003366;">SDJ International College</span>
+  <span class="site-name">CarRental</span>
+</div>
+
+<h1>9. Bibliography &amp; Reference</h1>
+
+<h2>Official Documentation</h2>
+<table>
+  <tr><th>Sr.</th><th>Resource</th><th>URL</th></tr>
+  <tr><td>1</td><td>React.js Official Documentation</td><td>https://react.dev/</td></tr>
+  <tr><td>2</td><td>Node.js Official Documentation</td><td>https://nodejs.org/en/docs/</td></tr>
+  <tr><td>3</td><td>Express.js Official Documentation</td><td>https://expressjs.com/</td></tr>
+  <tr><td>4</td><td>MongoDB Official Documentation</td><td>https://www.mongodb.com/docs/</td></tr>
+  <tr><td>5</td><td>Mongoose ODM Documentation</td><td>https://mongoosejs.com/docs/</td></tr>
+  <tr><td>6</td><td>Vite Build Tool Documentation</td><td>https://vite.dev/</td></tr>
+  <tr><td>7</td><td>TailwindCSS Documentation</td><td>https://tailwindcss.com/docs</td></tr>
+  <tr><td>8</td><td>JSON Web Token (JWT) Specification</td><td>https://jwt.io/introduction</td></tr>
+  <tr><td>9</td><td>Axios HTTP Client Documentation</td><td>https://axios-http.com/docs/intro</td></tr>
+  <tr><td>10</td><td>React Router Documentation</td><td>https://reactrouter.com/</td></tr>
+</table>
+
+<h2>Libraries &amp; Tools</h2>
+<table>
+  <tr><th>Sr.</th><th>Resource</th><th>URL</th></tr>
+  <tr><td>11</td><td>bcrypt.js — Password Hashing</td><td>https://www.npmjs.com/package/bcryptjs</td></tr>
+  <tr><td>12</td><td>Helmet.js — HTTP Security Headers</td><td>https://helmetjs.github.io/</td></tr>
+  <tr><td>13</td><td>express-rate-limit — API Rate Limiting</td><td>https://www.npmjs.com/package/express-rate-limit</td></tr>
+  <tr><td>14</td><td>express-mongo-sanitize — NoSQL Injection Prevention</td><td>https://www.npmjs.com/package/express-mongo-sanitize</td></tr>
+  <tr><td>15</td><td>express-validator — Input Validation</td><td>https://express-validator.github.io/</td></tr>
+  <tr><td>16</td><td>Multer — File Upload Middleware</td><td>https://www.npmjs.com/package/multer</td></tr>
+  <tr><td>17</td><td>ImageKit — Image CDN Service</td><td>https://imagekit.io/docs</td></tr>
+  <tr><td>18</td><td>Framer Motion — React Animation Library</td><td>https://www.framer.com/motion/</td></tr>
+  <tr><td>19</td><td>date-fns — Date Utility Library</td><td>https://date-fns.org/</td></tr>
+  <tr><td>20</td><td>React Hot Toast — Notification Library</td><td>https://react-hot-toast.com/</td></tr>
+</table>
+
+<h2>Deployment Platforms</h2>
+<table>
+  <tr><th>Sr.</th><th>Resource</th><th>URL</th></tr>
+  <tr><td>21</td><td>Vercel — Frontend Deployment</td><td>https://vercel.com/docs</td></tr>
+  <tr><td>22</td><td>Railway — Backend Deployment</td><td>https://docs.railway.app/</td></tr>
+  <tr><td>23</td><td>MongoDB Atlas — Cloud Database</td><td>https://www.mongodb.com/atlas</td></tr>
+  <tr><td>24</td><td>Git — Version Control</td><td>https://git-scm.com/doc</td></tr>
+  <tr><td>25</td><td>GitHub — Code Repository</td><td>https://docs.github.com/</td></tr>
+</table>
+
+<h2>Learning Resources</h2>
+<table>
+  <tr><th>Sr.</th><th>Resource</th><th>URL</th></tr>
+  <tr><td>26</td><td>MDN Web Docs — HTML, CSS, JavaScript</td><td>https://developer.mozilla.org/</td></tr>
+  <tr><td>27</td><td>Stack Overflow — Developer Q&amp;A Community</td><td>https://stackoverflow.com/</td></tr>
+  <tr><td>28</td><td>YouTube — Video Tutorials (Traversy Media, Net Ninja)</td><td>https://www.youtube.com/</td></tr>
+  <tr><td>29</td><td>freeCodeCamp — Web Development Tutorials</td><td>https://www.freecodecamp.org/</td></tr>
+  <tr><td>30</td><td>GeeksforGeeks — Computer Science Articles</td><td>https://www.geeksforgeeks.org/</td></tr>
+</table>
+
+<br><br>
+<div style="text-align:center; color:#888; font-size:10pt; margin-top:40px; border-top:2px solid #8B0000; padding-top:15px;">
+  <strong>— End of Project Report —</strong><br>
+  CarRental | SDJ International College | 2025–2026
+</div>

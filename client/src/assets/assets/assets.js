@@ -41,7 +41,7 @@ import car_image2 from "./car_image2.png"
 import car_image3 from "./car_image3.png"
 import car_image4 from "./car_image4.png"
 
-export const cityList = ['New York', 'Los Angeles', 'Houston', 'Chicago']
+export const cityList = ['Mumbai', 'Bangalore', 'Delhi', 'Kolkata']
 
 export const assets = {
     logo,
@@ -94,6 +94,7 @@ export const menuLinks = [
     { name: "About", path: "/about" },
     { name: "Contact", path: "/contact" },
     { name: "Support", path: "/support" },
+    { name: "My Bookings", path: "/my-bookings" },
 ]
 
 export const ownerMenuLinks = [
@@ -124,7 +125,7 @@ export const dummyCarData = [
         "fuel_type": "Hybrid",
         "transmission": "Semi-Automatic",
         "pricePerDay": 300,
-        "location": "New York",
+        "location": "Mumbai",
         "description": "The BMW X5 is a mid-size luxury SUV produced by BMW. The X5 made its debut in 1999 as the first SUV ever produced by BMW.",
         "isAvaliable": true,
         "createdAt": "2025-04-16T07:26:56.215Z",
@@ -141,7 +142,7 @@ export const dummyCarData = [
         "fuel_type": "Diesel",
         "transmission": "Manual",
         "pricePerDay": 130,
-        "location": "Chicago",
+        "location": "Bangalore",
         "description": "The Toyota Corolla is a mid-size luxury sedan produced by Toyota. The Corolla made its debut in 2008 as the first sedan ever produced by Toyota.",
         "isAvaliable": true,
         "createdAt": "2025-04-16T08:33:57.993Z",
@@ -158,7 +159,7 @@ export const dummyCarData = [
         "fuel_type": "Hybrid",
         "transmission": "Automatic",
         "pricePerDay": 200,
-        "location": "Los Angeles",
+        "location": "Delhi",
         "description": "The Jeep Wrangler is a mid-size luxury SUV produced by Jeep. The Wrangler made its debut in 2003 as the first SUV ever produced by Jeep.",
         "isAvaliable": true,
         "createdAt": "2025-04-16T08:34:39.592Z",
@@ -175,7 +176,7 @@ export const dummyCarData = [
         "fuel_type": "Diesel",
         "transmission": "Semi-Automatic",
         "pricePerDay": 209,
-        "location": "Houston",
+        "location": "Kolkata",
         "description": "The Ford Neo 6 is a premium sedan offering cutting-edge technology and refined driving comfort for urban commuters.",
         "isAvaliable": true,
         "createdAt": "2025-04-17T06:15:47.318Z",
@@ -192,7 +193,7 @@ export const dummyCarData = [
         "fuel_type": "Petrol",
         "transmission": "Automatic",
         "pricePerDay": 350,
-        "location": "New York",
+        "location": "Mumbai",
         "description": "The Mercedes C-Class delivers an exquisite blend of luxury, performance, and advanced safety technology.",
         "isAvaliable": true,
         "createdAt": "2025-04-18T09:20:12.118Z",
@@ -209,7 +210,7 @@ export const dummyCarData = [
         "fuel_type": "Diesel",
         "transmission": "Automatic",
         "pricePerDay": 280,
-        "location": "Chicago",
+        "location": "Bangalore",
         "description": "The Audi Q7 is a full-size luxury SUV with three rows of seating, quattro all-wheel drive, and premium interior.",
         "isAvaliable": true,
         "createdAt": "2025-04-19T11:45:30.445Z",
@@ -226,7 +227,7 @@ export const dummyCarData = [
         "fuel_type": "Petrol",
         "transmission": "Manual",
         "pricePerDay": 110,
-        "location": "Los Angeles",
+        "location": "Delhi",
         "description": "The Honda Civic is a reliable and fuel-efficient compact sedan known for its sporty design and excellent driving dynamics.",
         "isAvaliable": true,
         "createdAt": "2025-04-20T14:10:22.789Z",
@@ -243,7 +244,7 @@ export const dummyCarData = [
         "fuel_type": "Electric",
         "transmission": "Automatic",
         "pricePerDay": 400,
-        "location": "Houston",
+        "location": "Kolkata",
         "description": "The Tesla Model 3 is a fully electric sedan offering cutting-edge autopilot technology and zero emissions.",
         "isAvaliable": true,
         "createdAt": "2025-04-21T16:35:55.123Z",
@@ -260,7 +261,7 @@ export const dummyCarData = [
         "fuel_type": "Hybrid",
         "transmission": "Automatic",
         "pricePerDay": 450,
-        "location": "New York",
+        "location": "Mumbai",
         "description": "The Range Rover Sport combines luxury with powerful off-road capability, featuring a premium interior and dynamic handling.",
         "isAvaliable": true,
         "createdAt": "2025-04-22T08:50:33.567Z",

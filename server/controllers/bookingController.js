@@ -149,6 +149,7 @@ const cancelBooking = async (req, res) => {
 // @route   GET /api/bookings/analytics
 const getAnalytics = async (req, res) => {
   try {
+    const totalCars = await Car.countDocuments();
     const totalBookings = await Booking.countDocuments();
     const confirmedBookings = await Booking.countDocuments({ status: "confirmed" });
     const cancelledBookings = await Booking.countDocuments({ status: "cancelled" });
@@ -194,6 +195,7 @@ const getAnalytics = async (req, res) => {
       .limit(5);
 
     res.json({
+      totalCars,
       totalBookings,
       confirmedBookings,
       cancelledBookings,

@@ -106,7 +106,7 @@ const MyBookings = () => {
                 <div className="text-right flex flex-col justify-between">
                   <div>
                     <div className="text-xs text-gray-400">Total Price</div>
-                    <div className="text-2xl font-bold text-gray-900">${booking.totalPrice}</div>
+                    <div className="text-2xl font-bold text-gray-900">₹{booking.totalPrice}</div>
                     <div className="text-xs text-gray-400">
                       Booked on {format(new Date(booking.createdAt), "M/d/yyyy")}
                     </div>

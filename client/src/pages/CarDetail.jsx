@@ -87,7 +87,7 @@ const CarDetail = () => {
         <div className="lg:col-span-2">
           <div className="card p-6 sticky top-20">
             <div className="flex items-baseline justify-between mb-6">
-              <span className="text-3xl font-bold text-gray-900">${car.pricePerDay}</span>
+              <span className="text-3xl font-bold text-gray-900">₹{car.pricePerDay}</span>
               <span className="text-sm text-gray-400">per day</span>
             </div>
 

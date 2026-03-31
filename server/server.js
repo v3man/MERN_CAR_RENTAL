@@ -16,6 +16,7 @@ dotenv.config({ path: path.join(__dirname, ".env") });
 const authRoutes = require("./routes/authRoutes");
 const carRoutes = require("./routes/carRoutes");
 const bookingRoutes = require("./routes/bookingRoutes");
+const messageRoutes = require("./routes/messageRoutes");
 
 const app = express();
 
@@ -75,6 +76,7 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use("/api/auth", authRoutes);
 app.use("/api/cars", carRoutes);
 app.use("/api/bookings", bookingRoutes);
+app.use("/api/messages", messageRoutes);
 
 // Health check
 app.get("/api/health", (req, res) => {
