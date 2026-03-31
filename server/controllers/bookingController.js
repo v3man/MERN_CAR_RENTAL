@@ -96,7 +96,7 @@ const getAllBookings = async (req, res) => {
     const total = await Booking.countDocuments();
     const bookings = await Booking.find()
       .populate("user", "name email")
-      .populate("car", "name brand pricePerDay location")
+      .populate("car", "name brand images pricePerDay location")
       .sort({ createdAt: -1 })
       .skip(skip)
       .limit(Number(limit));
