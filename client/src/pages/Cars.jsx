@@ -1,21 +1,25 @@
 import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import api from "../api/axios";
 import CarCard from "../components/CarCard";
 import { assets, dummyCarData } from "../assets/assets";
 
 const Cars = () => {
+  const [searchParams] = useSearchParams();
   const [cars, setCars] = useState([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [total, setTotal] = useState(0);
   const [search, setSearch] = useState("");
+  const [location, setLocation] = useState(searchParams.get("location") || "");
 
   const fetchCars = async () => {
     setLoading(true);
     try {
       const params = new URLSearchParams({ page, limit: 9 });
       if (search) params.append("search", search);
+      if (location) params.append("location", location);
       const { data } = await api.get(`/cars?${params}`);
       setCars(data.cars);
       setTotalPages(data.totalPages);
@@ -23,15 +27,28 @@ const Cars = () => {
     } catch (err) {
       console.error(err);
       // Fallback to dummy data when backend is unavailable
-      setCars(dummyCarData);
+      let filteredDummy = [...dummyCarData];
+      if (location) {
+        filteredDummy = filteredDummy.filter(car => 
+          car.location.toLowerCase().includes(location.toLowerCase())
+        );
+      }
+      if (search) {
+        filteredDummy = filteredDummy.filter(car => 
+          car.brand.toLowerCase().includes(search.toLowerCase()) ||
+          car.model.toLowerCase().includes(search.toLowerCase()) ||
+          car.description.toLowerCase().includes(search.toLowerCase())
+        );
+      }
+      setCars(filteredDummy);
       setTotalPages(1);
-      setTotal(dummyCarData.length);
+      setTotal(filteredDummy.length);
     } finally {
       setLoading(false);
     }
   };
 
-  useEffect(() => { fetchCars(); }, [page]);
+  useEffect(() => { fetchCars(); }, [page, location]);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -67,7 +84,20 @@ const Cars = () => {
       {/* Results */}
       <div className="max-w-7xl mx-auto px-4 py-10">
         {!loading && (
-          <p className="text-sm text-gray-500 mb-6">Showing {cars.length} Cars</p>
+          <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
+            <p className="text-sm text-gray-500">Showing {cars.length} Cars</p>
+            {location && (
+              <div className="flex items-center gap-2 bg-primary-50 text-primary-700 px-3 py-1 rounded-full text-xs font-medium border border-primary-100">
+                <span>Location: {location}</span>
+                <button 
+                  onClick={() => { setLocation(""); setPage(1); }}
+                  className="hover:text-primary-900 transition-colors"
+                >
+                  <img src={assets.close_icon} alt="clear" className="w-2.5 h-2.5 opacity-60" />
+                </button>
+              </div>
+            )}
+          </div>
         )}
 
         {loading ? (
