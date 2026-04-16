@@ -37,15 +37,15 @@ const signup = async (req, res) => {
 
     res.cookie("accessToken", accessToken, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
+      secure: true,
+      sameSite: "none",
       maxAge: 15 * 60 * 1000, // 15 minutes
     });
 
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
+      secure: true,
+      sameSite: "none",
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
     });
 
@@ -89,15 +89,15 @@ const login = async (req, res) => {
 
     res.cookie("accessToken", accessToken, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
+      secure: true,
+      sameSite: "none",
       maxAge: 15 * 60 * 1000, // 15 minutes
     });
 
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
+      secure: true,
+      sameSite: "none",
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
     });
 
@@ -135,8 +135,8 @@ const refresh = async (req, res) => {
 
     res.cookie("accessToken", newAccessToken, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
+      secure: true,
+      sameSite: "none",
       maxAge: 15 * 60 * 1000, // 15 minutes
     });
 
@@ -150,8 +150,8 @@ const refresh = async (req, res) => {
 // @route   POST /api/auth/logout
 const logout = async (req, res) => {
   try {
-    res.cookie("accessToken", "", { maxAge: 0 });
-    res.cookie("refreshToken", "", { maxAge: 0 });
+    res.cookie("accessToken", "", { maxAge: 0, httpOnly: true, secure: true, sameSite: "none" });
+    res.cookie("refreshToken", "", { maxAge: 0, httpOnly: true, secure: true, sameSite: "none" });
     res.json({ message: "Logged out successfully" });
   } catch (error) {
     console.error("Logout error:", error.message);
