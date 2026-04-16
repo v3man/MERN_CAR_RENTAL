@@ -29,7 +29,7 @@ const MyBookings = () => {
     try {
       await api.patch(`/bookings/${id}/cancel`);
       setBookings((prev) =>
-        prev.map((b) => (b._id === id ? { ...b, status: "cancelled" } : b))
+        (prev || []).map((b) => (b._id === id ? { ...b, status: "cancelled" } : b))
       );
       toast.success("Booking cancelled");
     } catch (error) {
@@ -61,7 +61,7 @@ const MyBookings = () => {
         </div>
       ) : bookings.length > 0 ? (
         <div className="space-y-4">
-          {bookings.map((booking, index) => {
+          {(bookings || []).map((booking, index) => {
             const car = booking.car;
             const imgPath = car?.images?.[0] ? car.images[0].replace(/\\/g, '/') : null;
             const imageUrl = imgPath

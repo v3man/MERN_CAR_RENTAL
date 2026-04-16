@@ -179,7 +179,7 @@ const Home = () => {
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {featuredCars.map((car, i) => (
+              {(featuredCars || []).map((car, i) => (
                 <CarCard key={car._id || i} car={car} />
               ))}
             </div>
@@ -222,7 +222,7 @@ const Home = () => {
             <p className="text-gray-500 max-w-lg mx-auto">Discover why discerning travelers choose StayVenture for their luxury accommodations around the world.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {testimonials.map((t, i) => (
+            {(testimonials || []).map((t, i) => (
               <div key={i} className="card p-6">
                 <div className="flex items-center gap-3 mb-3">
                   <img src={t.image} alt={t.name} className="w-11 h-11 rounded-full object-cover" />

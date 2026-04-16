@@ -109,7 +109,7 @@ const Cars = () => {
         ) : cars.length > 0 ? (
           <>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {cars.map((car) => (
+              {(cars || []).map((car) => (
                 <CarCard key={car._id} car={car} />
               ))}
             </div>

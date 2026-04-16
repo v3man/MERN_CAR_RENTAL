@@ -37,7 +37,7 @@ const ManageCars = () => {
     try {
       await api.put(`/cars/${car._id}`, { available: !car.available });
       setCars((prev) =>
-        prev.map((c) => c._id === car._id ? { ...c, available: !c.available } : c)
+        (prev || []).map((c) => c._id === car._id ? { ...c, available: !c.available } : c)
       );
     } catch (err) {
       toast.error("Failed to update");
@@ -72,7 +72,7 @@ const ManageCars = () => {
                 <td colSpan={5} className="text-center py-10 text-gray-400">No cars found</td>
               </tr>
             ) : (
-              cars.map((car) => {
+              (cars || []).map((car) => {
                 const fallbacks = [assets.car_image1, assets.car_image2, assets.car_image3, assets.car_image4];
                 const fallbackImage = fallbacks[parseInt(car._id?.slice(-1), 16) % fallbacks.length] || assets.car_image1;
 

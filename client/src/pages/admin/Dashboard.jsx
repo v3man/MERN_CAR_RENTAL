@@ -68,7 +68,7 @@ const Dashboard = () => {
 
           {analytics?.recentBookings && analytics.recentBookings.length > 0 ? (
             <div className="space-y-3">
-              {analytics.recentBookings.map((b) => (
+              {(analytics.recentBookings || []).map((b) => (
                 <div key={b._id} className="flex items-center justify-between py-2 border-b border-gray-50 last:border-0">
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 bg-primary-50 rounded-lg flex items-center justify-center">

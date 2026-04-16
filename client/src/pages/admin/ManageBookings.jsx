@@ -29,7 +29,7 @@ const ManageBookings = () => {
     try {
       await api.patch(`/bookings/${id}/cancel`);
       setBookings((prev) =>
-        prev.map((b) => (b._id === id ? { ...b, status: "cancelled" } : b))
+        (prev || []).map((b) => (b._id === id ? { ...b, status: "cancelled" } : b))
       );
       toast.success("Booking cancelled");
     } catch (err) {
@@ -76,7 +76,7 @@ const ManageBookings = () => {
                 <td colSpan={5} className="text-center py-10 text-gray-400">No bookings found</td>
               </tr>
             ) : (
-              bookings.map((booking) => {
+              (bookings || []).map((booking) => {
                 const car = booking.car;
                 const images = car?.images || [];
                 const imageUrl = images.length > 0

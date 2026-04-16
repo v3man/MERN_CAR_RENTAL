@@ -35,7 +35,7 @@ const Support = () => {
 
   const handleResolve = (id) => {
     setMessages((prevs) =>
-      prevs.map((m) => (m.id === id ? { ...m, status: "resolved" } : m))
+      (prevs || []).map((m) => (m.id === id ? { ...m, status: "resolved" } : m))
     );
     toast.success("Support ticket marked as resolved.");
   };
@@ -93,7 +93,7 @@ const Support = () => {
               No support tickets found. Everything looks good!
             </div>
           ) : (
-            messages.map((msg) => (
+            (messages || []).map((msg) => (
               <div key={msg.id} className="p-6 hover:bg-gray-50/50 transition-colors flex flex-col md:flex-row gap-6 bg-white shrink-0">
                 {/* Status indicator */}
                 <div className="min-w-32">
